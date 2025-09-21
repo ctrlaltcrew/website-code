@@ -3,7 +3,7 @@
 Official website of **Ctrl Alt Crew** — AI & Software Development Experts.  
 Built with **Vite + React + TypeScript + Tailwind + shadcn-ui**.
 
-🌐 Live: [https://ctrlaltcrew.site](https://ctrlaltcrew.site)  
+🌐 Live: [https://ctrlaltcrew.com](https://ctrlaltcrew.com)  
 📦 Repo: [https://github.com/ctrlaltcrew/website-code](https://github.com/ctrlaltcrew/website-code)
 
 ---

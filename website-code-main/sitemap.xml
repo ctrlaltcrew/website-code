@@ -3,38 +3,38 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://ctrlaltcrew.site/home</loc>
+    <loc>https://ctrlaltcrew.com/home</loc>
     <lastmod>2025-09-18</lastmod>
     <priority>1.0</priority>
   </url>
 
   <!-- Example subpages (replace or add as needed) -->
   <url>
-    <loc>https://ctrlaltcrew.site/about</loc>
+    <loc>https://ctrlaltcrew.com/about</loc>
     <lastmod>2025-09-18</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://ctrlaltcrew.site/services</loc>
+    <loc>https://ctrlaltcrew.com/services</loc>
     <lastmod>2025-09-18</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://ctrlaltcrew.site/contact</loc>
+    <loc>https://ctrlaltcrew.com/contact</loc>
     <lastmod>2025-09-18</lastmod>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://ctrlaltcrew.site/notFound</loc>
+    <loc>https://ctrlaltcrew.com/notFound</loc>
     <lastmod>2025-09-18</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://ctrlaltcrew.site/Portfolio</loc>
+    <loc>https://ctrlaltcrew.com/Portfolio</loc>
     <lastmod>2025-09-18</lastmod>
     <priority>0.8</priority>
   </url>
