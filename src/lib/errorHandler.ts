@@ -6,6 +6,7 @@ export const USER_ERRORS = {
   DELETE_FAILED: "Failed to delete. Please try again.",
   UPDATE_FAILED: "Failed to update. Please try again.",
   AUTH_FAILED: "Invalid email or password. Please try again.",
+  ACCESS_DENIED: "Access denied. You don't have permission to view this page.",
   NOT_FOUND: "Resource not found.",
   UNAUTHORIZED: "You are not authorized to perform this action.",
   NETWORK_ERROR: "Network error. Please check your connection.",
