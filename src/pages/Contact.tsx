@@ -53,7 +53,10 @@ const Contact = () => {
           }
         ]);
 
-      if (error) throw error;
+      if (error) {
+        console.error("Service request insert error:", error);
+        throw error;
+      }
 
       toast({
         title: "Request Submitted Successfully! 🚀",
