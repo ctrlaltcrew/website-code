@@ -71,7 +71,7 @@ const ParticleField = () => {
       </bufferGeometry>
       <pointsMaterial
         size={0.05}
-        color="#00d4ff"
+        color="#b0b0b0"
         transparent
         opacity={0.6}
         sizeAttenuation
@@ -93,8 +93,8 @@ const GlowingSphere = ({ position }: { position: [number, number, number] }) => 
   return (
     <Sphere ref={meshRef} args={[0.5, 32, 32]} position={position}>
       <meshStandardMaterial
-        color="#ff6b9d"
-        emissive="#ff6b9d"
+        color="#ffffff"
+        emissive="#ffffff"
         emissiveIntensity={0.5}
         roughness={0.2}
         metalness={0.8}
@@ -109,13 +109,13 @@ const Scene = () => {
     <>
       <ambientLight intensity={0.5} />
       <directionalLight position={[10, 10, 5]} intensity={1} />
-      <pointLight position={[-10, -10, -5]} color="#00d4ff" intensity={1} />
+      <pointLight position={[-10, -10, -5]} color="#808080" intensity={1} />
       
       <ParticleField />
       
-      <GeometricShape position={[-4, 2, -5]} color="#00d4ff" />
-      <GeometricShape position={[4, -2, -3]} color="#ff6b9d" />
-      <GeometricShape position={[0, 0, -8]} color="#c084fc" />
+      <GeometricShape position={[-4, 2, -5]} color="#a0a0a0" />
+      <GeometricShape position={[4, -2, -3]} color="#606060" />
+      <GeometricShape position={[0, 0, -8]} color="#ffffff" />
       
       <GlowingSphere position={[-6, 0, -4]} />
       <GlowingSphere position={[6, 1, -6]} />

@@ -36,13 +36,13 @@ const Interactive3DLogo = () => {
         <mesh rotation={[Math.PI / 2, 0, 0]}>
           <torusGeometry args={[3, 0.4, 16, 100]} />
           <MeshDistortMaterial
-            color="#00d4ff"
+            color="#a0a0a0"
             attach="material"
             distort={0.3}
             speed={1.5}
             roughness={0.2}
             metalness={0.9}
-            emissive="#00d4ff"
+            emissive="#a0a0a0"
             emissiveIntensity={0.3}
           />
         </mesh>
@@ -53,13 +53,13 @@ const Interactive3DLogo = () => {
         <mesh rotation={[0, Math.PI / 4, 0]}>
           <torusGeometry args={[2, 0.3, 16, 100]} />
           <MeshDistortMaterial
-            color="#ff6b9d"
+            color="#505050"
             attach="material"
             distort={0.4}
             speed={2}
             roughness={0.2}
             metalness={0.9}
-            emissive="#ff6b9d"
+            emissive="#505050"
             emissiveIntensity={0.3}
           />
         </mesh>
@@ -74,13 +74,13 @@ const Interactive3DLogo = () => {
       >
         <icosahedronGeometry args={[1.2, 1]} />
         <MeshDistortMaterial
-          color="#c084fc"
+          color="#ffffff"
           attach="material"
           distort={0.5}
           speed={3}
           roughness={0.1}
           metalness={1}
-          emissive="#c084fc"
+          emissive="#ffffff"
           emissiveIntensity={hovered ? 0.8 : 0.4}
         />
       </mesh>
@@ -94,8 +94,8 @@ const Logo3DInteractive = () => {
       <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
         <ambientLight intensity={0.5} />
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} />
-        <pointLight position={[-10, -10, -10]} color="#00d4ff" intensity={0.8} />
-        <pointLight position={[10, 10, 10]} color="#ff6b9d" intensity={0.6} />
+        <pointLight position={[-10, -10, -10]} color="#808080" intensity={0.8} />
+        <pointLight position={[10, 10, 10]} color="#ffffff" intensity={0.6} />
         
         <Interactive3DLogo />
       </Canvas>
