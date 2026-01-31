@@ -31,31 +31,78 @@ const About = () => {
       </section>
 
       {/* Our Story */}
-      <section className="py-16 sm:py-20 bg-gradient-to-b from-background to-gray-900/50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">Our Story</h2>
+      <section className="py-16 sm:py-20 bg-gradient-to-b from-background to-gray-900/50 relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-1/4 left-0 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-0 w-64 h-64 bg-gray-500/5 rounded-full blur-3xl"></div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl font-bold text-center mb-16 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">Our Story</h2>
             
-            <div className="space-y-6">
-              <div className="group p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/50 border border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 backdrop-blur-sm">
-                <p className="text-base sm:text-lg leading-relaxed text-gray-300 group-hover:text-gray-100 transition-colors">
-                  Born from a shared frustration with buggy software and a mutual love for clean code and coffee, 
-                  Ctrl Alt Crew emerged as the answer to "Why can't tech be both powerful and fun?"
-                </p>
+            {/* Timeline Layout */}
+            <div className="relative">
+              {/* Vertical Line */}
+              <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-white/20 to-transparent transform -translate-x-1/2"></div>
+              
+              {/* Story Item 1 - Right */}
+              <div className="relative mb-12 md:mb-16">
+                <div className="md:flex md:items-center">
+                  <div className="md:w-1/2 md:pr-12"></div>
+                  <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rounded-full border-4 border-gray-900 shadow-lg shadow-white/50"></div>
+                  <div className="md:w-1/2 md:pl-12">
+                    <div className="group relative">
+                      <div className="absolute -inset-1 bg-gradient-to-r from-white/20 to-gray-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                      <div className="relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 group-hover:border-white/50 transition-all duration-500">
+                        <div className="absolute -left-3 top-8 w-6 h-6 bg-white transform rotate-45 hidden md:block"></div>
+                        <p className="text-base sm:text-lg leading-relaxed text-gray-300 group-hover:text-white transition-colors">
+                          Born from a shared frustration with buggy software and a mutual love for clean code and coffee, 
+                          Ctrl Alt Crew emerged as the answer to "Why can't tech be both powerful and fun?"
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               
-              <div className="group p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 backdrop-blur-sm">
-                <p className="text-base sm:text-lg leading-relaxed text-gray-300 group-hover:text-gray-100 transition-colors">
-                  We believe that the best solutions come from combining technical excellence with human creativity. 
-                  Our team doesn't just write code – we craft digital experiences that make users smile and businesses thrive.
-                </p>
+              {/* Story Item 2 - Left */}
+              <div className="relative mb-12 md:mb-16">
+                <div className="md:flex md:items-center md:flex-row-reverse">
+                  <div className="md:w-1/2 md:pl-12"></div>
+                  <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-br from-gray-300 to-white rounded-full border-4 border-gray-900 shadow-lg shadow-white/50"></div>
+                  <div className="md:w-1/2 md:pr-12">
+                    <div className="group relative">
+                      <div className="absolute -inset-1 bg-gradient-to-r from-gray-500/20 to-white/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                      <div className="relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 group-hover:border-white/50 transition-all duration-500">
+                        <div className="absolute -right-3 top-8 w-6 h-6 bg-gradient-to-br from-gray-300 to-white transform rotate-45 hidden md:block"></div>
+                        <p className="text-base sm:text-lg leading-relaxed text-gray-300 group-hover:text-white transition-colors">
+                          We believe that the best solutions come from combining technical excellence with human creativity. 
+                          Our team doesn't just write code – we craft digital experiences that make users smile and businesses thrive.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               
-              <div className="group p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/50 border border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 backdrop-blur-sm">
-                <p className="text-base sm:text-lg leading-relaxed text-gray-300 group-hover:text-gray-100 transition-colors">
-                  From AI that actually makes sense to chatbots that don't make you want to throw your laptop out the window, 
-                  we're here to prove that great software can be both intelligent and intuitive.
-                </p>
+              {/* Story Item 3 - Right */}
+              <div className="relative">
+                <div className="md:flex md:items-center">
+                  <div className="md:w-1/2 md:pr-12"></div>
+                  <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rounded-full border-4 border-gray-900 shadow-lg shadow-white/50"></div>
+                  <div className="md:w-1/2 md:pl-12">
+                    <div className="group relative">
+                      <div className="absolute -inset-1 bg-gradient-to-r from-white/20 to-gray-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                      <div className="relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 group-hover:border-white/50 transition-all duration-500">
+                        <div className="absolute -left-3 top-8 w-6 h-6 bg-white transform rotate-45 hidden md:block"></div>
+                        <p className="text-base sm:text-lg leading-relaxed text-gray-300 group-hover:text-white transition-colors">
+                          From AI that actually makes sense to chatbots that don't make you want to throw your laptop out the window, 
+                          we're here to prove that great software can be both intelligent and intuitive.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
