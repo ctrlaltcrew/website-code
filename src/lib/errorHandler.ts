@@ -5,6 +5,7 @@ export const USER_ERRORS = {
   SAVE_FAILED: "Failed to save. Please try again.",
   DELETE_FAILED: "Failed to delete. Please try again.",
   UPDATE_FAILED: "Failed to update. Please try again.",
+  AUTH_FAILED: "Invalid email or password. Please try again.",
   NOT_FOUND: "Resource not found.",
   UNAUTHORIZED: "You are not authorized to perform this action.",
   NETWORK_ERROR: "Network error. Please check your connection.",
