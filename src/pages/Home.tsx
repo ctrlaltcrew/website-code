@@ -172,40 +172,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Achievements Section with 3D Visualization */}
-      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-background to-secondary">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center mb-8 sm:mb-10 md:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">Ctrl Alt Crew's Achievements</h2>
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
-              We take pride in empowering startups and enterprises worldwide with AI-powered, scalable, and innovative solutions.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mt-8 sm:mt-10 md:mt-12">
-            <div className="text-center p-6 rounded-lg glass-3d border border-border/50 hover:border-primary transition-all duration-300 perspective-container">
-              <div className="text-5xl font-bold text-gradient mb-2 card-3d">{projectCount}+</div>
-              <div className="text-muted-foreground">Successful Projects</div>
-            </div>
-            
-            <div className="text-center p-6 rounded-lg glass-3d border border-border/50 hover:border-primary transition-all duration-300 perspective-container">
-              <div className="text-5xl font-bold text-gradient mb-2 card-3d">{clientCount}+</div>
-              <div className="text-muted-foreground">Active Clients</div>
-            </div>
-            
-            <div className="text-center p-6 rounded-lg glass-3d border border-border/50 hover:border-primary transition-all duration-300 perspective-container">
-              <div className="text-5xl font-bold text-gradient mb-2 card-3d">{countryCount}+</div>
-              <div className="text-muted-foreground">Countries Served</div>
-            </div>
-            
-            <div className="text-center p-6 rounded-lg glass-3d border border-border/50 hover:border-primary transition-all duration-300 perspective-container">
-              <div className="text-5xl font-bold text-gradient mb-2 card-3d">{yearCount}+</div>
-              <div className="text-muted-foreground">Years of Experience</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black relative overflow-hidden">
         {/* Animated background elements */}
