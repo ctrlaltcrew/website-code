@@ -59,7 +59,7 @@ const AdminLogin = () => {
           <KeyboardLogo />
           <h1 className="text-3xl font-bold mt-6 mb-2 font-mono">Admin Access</h1>
           <p className="text-muted-foreground">
-            {isSignUp ? "Create your admin account" : "Sign in to manage your blog"}
+            Sign in to manage your blog and content
           </p>
         </div>
 
@@ -77,7 +77,7 @@ const AdminLogin = () => {
               />
             </div>
 
-            Sign in to manage your blog and content
+            <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
               <Input
                 id="password"

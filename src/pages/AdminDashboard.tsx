@@ -185,7 +185,7 @@ const AdminDashboard = () => {
       <main className="container mx-auto px-3 md:px-4 py-4 md:py-8">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 md:gap-0 mb-4 md:mb-8">
           <h2 className="text-xl md:text-3xl font-bold font-mono">Manage Posts</h2>
-          <Button onClick={() => setShowForm(true)} size="sm" md:size="default">
+          <Button onClick={() => setShowForm(true)} size="sm">
             <Plus className="mr-1 md:mr-2 h-3 w-3 md:h-4 md:w-4" />
             <span className="text-xs md:text-sm">New Post</span>
           </Button>
@@ -196,7 +196,7 @@ const AdminDashboard = () => {
             <p className="text-base md:text-xl text-muted-foreground mb-4">
               No posts yet. Create your first one!
             </p>
-            <Button onClick={() => setShowForm(true)} size="sm" md:size="default">
+            <Button onClick={() => setShowForm(true)} size="sm">
               <Plus className="mr-1 md:mr-2 h-3 w-3 md:h-4 md:w-4" />
               <span className="text-xs md:text-sm">Create Post</span>
             </Button>
