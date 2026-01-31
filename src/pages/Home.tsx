@@ -73,7 +73,7 @@ const Home = () => {
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">
-              Ctrl Alt Crew's <span className="text-gradient">Achievements</span>
+              Ctrl Alt Crew's <span className="bg-gradient-to-r from-gray-300 to-white bg-clip-text text-transparent">Achievements</span>
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
               We take pride in empowering startups and enterprises worldwide with 
@@ -82,24 +82,28 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 text-center">
-            <div className="p-6 rounded-2xl bg-card border border-border hover:border-primary transition-colors glow-hover">
-              <h3 className="text-4xl font-extrabold text-gradient mb-2">100+</h3>
-              <p className="text-muted-foreground">Successful Projects</p>
+            <div className="group p-6 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 relative overflow-hidden">
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
+              <h3 className="text-4xl font-extrabold bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">100+</h3>
+              <p className="text-gray-400 group-hover:text-gray-200 transition-colors">Successful Projects</p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-card border border-border hover:border-primary transition-colors glow-hover">
-              <h3 className="text-4xl font-extrabold text-gradient mb-2">80+</h3>
-              <p className="text-muted-foreground">Active Clients</p>
+            <div className="group p-6 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 relative overflow-hidden">
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
+              <h3 className="text-4xl font-extrabold bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">80+</h3>
+              <p className="text-gray-400 group-hover:text-gray-200 transition-colors">Active Clients</p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-card border border-border hover:border-primary transition-colors glow-hover">
-              <h3 className="text-4xl font-extrabold text-gradient mb-2">15+</h3>
-              <p className="text-muted-foreground">Countries Served</p>
+            <div className="group p-6 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 relative overflow-hidden">
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
+              <h3 className="text-4xl font-extrabold bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">15+</h3>
+              <p className="text-gray-400 group-hover:text-gray-200 transition-colors">Countries Served</p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-card border border-border hover:border-primary transition-colors glow-hover">
-              <h3 className="text-4xl font-extrabold text-gradient mb-2">1+</h3>
-              <p className="text-muted-foreground">Years of Experience</p>
+            <div className="group p-6 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 relative overflow-hidden">
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
+              <h3 className="text-4xl font-extrabold bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">1+</h3>
+              <p className="text-gray-400 group-hover:text-gray-200 transition-colors">Years of Experience</p>
             </div>
           </div>
 
@@ -107,7 +111,7 @@ const Home = () => {
             <Button 
               asChild 
               size="lg" 
-              className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-4"
+              className="bg-white text-black hover:bg-gray-200 transition-all duration-300 text-lg px-8 py-4 shadow-lg hover:shadow-xl hover:shadow-white/20"
             >
               <Link to="/contact">Get in Touch</Link>
             </Button>
@@ -126,37 +130,40 @@ const Home = () => {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mt-8 sm:mt-10 md:mt-12">
-            <Card className="glass-3d border-border/50 hover:border-primary transition-all duration-500 glow-hover">
+            <Card className="group bg-gradient-to-br from-gray-900 to-gray-800 border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 relative overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
               <CardContent className="p-5 sm:p-6 md:p-8 text-center">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-lg bg-gradient-to-br from-[#00d4ff] to-[#0ea5e9] flex items-center justify-center">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-lg bg-gradient-to-br from-gray-700 to-gray-600 flex items-center justify-center shadow-lg group-hover:shadow-white/20 group-hover:scale-110 transition-all duration-300">
                   <Brain className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 md:mb-4">AI & Data Science</h3>
-                <p className="text-sm sm:text-base text-muted-foreground">
+                <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 md:mb-4 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">AI & Data Science</h3>
+                <p className="text-sm sm:text-base text-gray-400 group-hover:text-gray-200 transition-colors">
                   Machine learning models that actually learn (unlike some developers we know)
                 </p>
               </CardContent>
             </Card>
             
-            <Card className="glass-3d border-border/50 hover:border-primary transition-all duration-500 glow-hover">
+            <Card className="group bg-gradient-to-br from-gray-900 to-gray-800 border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 relative overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
               <CardContent className="p-5 sm:p-6 md:p-8 text-center">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-lg bg-gradient-to-br from-[#ff6b9d] to-[#ec4899] flex items-center justify-center">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-lg bg-gradient-to-br from-gray-600 to-gray-500 flex items-center justify-center shadow-lg group-hover:shadow-white/20 group-hover:scale-110 transition-all duration-300">
                   <Code className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 md:mb-4">Web Development</h3>
-                <p className="text-sm sm:text-base text-muted-foreground">
+                <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 md:mb-4 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">Web Development</h3>
+                <p className="text-sm sm:text-base text-gray-400 group-hover:text-gray-200 transition-colors">
                   Responsive sites that work on everything except Internet Explorer (we have standards)
                 </p>
               </CardContent>
             </Card>
             
-            <Card className="glass-3d border-border/50 hover:border-primary transition-all duration-500 glow-hover sm:col-span-2 md:col-span-1">
+            <Card className="group bg-gradient-to-br from-gray-900 to-gray-800 border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 sm:col-span-2 md:col-span-1 relative overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
               <CardContent className="p-5 sm:p-6 md:p-8 text-center">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-lg bg-gradient-to-br from-[#c084fc] to-[#a855f7] flex items-center justify-center">
-                  <Bot className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white" />
+                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-lg bg-gradient-to-br from-white to-gray-400 flex items-center justify-center shadow-lg group-hover:shadow-white/20 group-hover:scale-110 transition-all duration-300">
+                  <Bot className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-black" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 md:mb-4">Chatbots & Automation</h3>
-                <p className="text-sm sm:text-base text-muted-foreground">
+                <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 md:mb-4 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">Chatbots & Automation</h3>
+                <p className="text-sm sm:text-base text-gray-400 group-hover:text-gray-200 transition-colors">
                   Bots so smart, they'll probably ask for a raise
                 </p>
               </CardContent>
