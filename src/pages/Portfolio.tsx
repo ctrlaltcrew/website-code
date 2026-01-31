@@ -251,8 +251,7 @@ const Portfolio = () => {
           <Button 
             asChild 
             size="lg" 
-            className="bg-white text-black hover:bg-gray-200 transition-all duration-300 shadow-2xl hover:shadow-white/50 hover:scale-105 transform
-            className="bg-primary-foreground text-primary hover:bg-primary-foreground/90"
+            className="bg-white text-black hover:bg-gray-200 transition-all duration-300 shadow-2xl hover:shadow-white/50 hover:scale-105 transform"
           >
             <Link to="/contact">Start Your Project 🚀</Link>
           </Button>
