@@ -51,12 +51,24 @@ const AdminDashboard = () => {
       }
 
       // Check if user has admin role
-      const { data: roleData } = await supabase
+      const { data: roleData, error } = await supabase
         .from("user_roles")
         .select("role")
         .eq("user_id", session.user.id)
         .eq("role", "admin")
-        .single();
+        .maybeSingle();
+
+      if (error) {
+        console.error("Error checking admin role:", error);
+        toast({
+          title: "Access Denied",
+          description: "Error verifying admin permissions.",
+          variant: "destructive",
+        });
+        await supabase.auth.signOut();
+        navigate("/admin");
+        return;
+      }
 
       if (!roleData) {
         toast({
