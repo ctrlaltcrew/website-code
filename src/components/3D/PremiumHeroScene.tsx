@@ -5,7 +5,6 @@ import {
   RoundedBox,
   Cylinder,
   Sphere,
-  Environment,
   ContactShadows
 } from '@react-three/drei';
 import * as THREE from 'three';
@@ -191,7 +190,6 @@ const PremiumHeroScene = () => {
         <FloatingCube position={[3, -1, 1]} delay={1} />
         <FloatingCube position={[8, 3, 1]} delay={1.5} />
         
-        <Environment preset="night" />
         <ContactShadows position={[0, -2.5, 0]} opacity={0.8} scale={15} blur={2.5} far={10} />
         <fog attach="fog" args={['#000000', 8, 25]} />
       </Canvas>
