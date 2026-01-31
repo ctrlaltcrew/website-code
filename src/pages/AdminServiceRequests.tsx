@@ -47,9 +47,15 @@ const AdminServiceRequests = () => {
         .select('role')
         .eq('user_id', session.user.id)
         .eq('role', 'admin')
-        .single();
+        .maybeSingle();
 
-      if (roleError || !roleData) {
+      if (roleError) {
+        console.error("Error checking admin role:", roleError);
+        navigate('/admin');
+        return;
+      }
+
+      if (!roleData) {
         navigate('/admin');
         return;
       }
