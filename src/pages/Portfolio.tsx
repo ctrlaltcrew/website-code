@@ -180,7 +180,8 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* Testimonials */}gray-950">
+      {/* Testimonials */}
+      <section className="py-20 bg-gray-950">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">What Clients Say</h2>
@@ -200,8 +201,7 @@ const Portfolio = () => {
                   <div>
                     <p className="font-semibold text-white">{testimonial.name}</p>
                     <p className="text-sm text-gray-400">{testimonial.role}</p>
-                    <Badge className="mt-2 text-xs bg-gray-800 text-gray-300 border-gray-700imonial.role}</p>
-                    <Badge variant="secondary" className="mt-2 text-xs">
+                    <Badge className="mt-2 text-xs bg-gray-800 text-gray-300 border-gray-700">
                       {testimonial.project}
                     </Badge>
                   </div>
