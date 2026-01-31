@@ -45,10 +45,10 @@ const Contact = () => {
             name: formData.name,
             email: formData.email,
             company: formData.company || null,
-            service: formData.service,
-            budget: formData.budget,
+            service_type: formData.service,
+            budget_range: formData.budget,
             timeline: formData.timeline,
-            message: formData.message,
+            project_description: formData.message,
             status: 'pending'
           }
         ]);
