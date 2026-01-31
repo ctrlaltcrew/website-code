@@ -212,7 +212,8 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* Tech Stack */} bg-black">
+      {/* Tech Stack */}
+      <section className="py-20 bg-black">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">Our Tech Arsenal</h2>
           <p className="text-xl text-gray-300 mb-12">
@@ -226,8 +227,7 @@ const Portfolio = () => {
             ].map((tech, index) => (
               <div key={index} className="group p-4 rounded-lg bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-white/50 transition-all duration-300 hover:shadow-lg hover:shadow-white/10 hover:scale-105 relative overflow-hidden">
                 <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-                <span className="text-white font-medium">{tech}</span>={index} className="keyboard-key text-center">
-                {tech}
+                <span className="text-white font-medium">{tech}</span>
               </div>
             ))}
           </div>
