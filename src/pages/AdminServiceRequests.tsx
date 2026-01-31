@@ -11,13 +11,13 @@ import { ArrowLeft, Mail, Phone, Building, Calendar, DollarSign, Clock } from 'l
 
 interface ServiceRequest {
   id: string;
-  service_type: string;
+  service: string;
   name: string;
   email: string;
   company: string | null;
   phone: string | null;
-  project_description: string;
-  budget_range: string | null;
+  message: string;
+  budget: string | null;
   timeline: string | null;
   status: string;
   created_at: string;
@@ -163,7 +163,7 @@ const AdminServiceRequests = () => {
                 <CardHeader className="p-3 md:p-6">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-3">
                     <div className="flex-1">
-                      <CardTitle className="text-base md:text-xl mb-1 md:mb-2">{request.service_type}</CardTitle>
+                      <CardTitle className="text-base md:text-xl mb-1 md:mb-2">{request.service}</CardTitle>
                       <p className="text-xs md:text-sm text-muted-foreground">
                         Submitted {new Date(request.created_at).toLocaleDateString()}
                       </p>
@@ -206,10 +206,10 @@ const AdminServiceRequests = () => {
                           <span className="truncate">{request.company}</span>
                         </div>
                       )}
-                      {request.budget_range && (
+                      {request.budget && (
                         <div className="flex items-center gap-2 text-xs md:text-sm">
                           <DollarSign className="h-3 w-3 md:h-4 md:w-4 text-muted-foreground flex-shrink-0" />
-                          <span className="capitalize">{request.budget_range.replace(/-/g, ' ')}</span>
+                          <span className="capitalize">{request.budget.replace(/-/g, ' ')}</span>
                         </div>
                       )}
                       {request.timeline && (
@@ -223,7 +223,7 @@ const AdminServiceRequests = () => {
                     <div>
                       <h4 className="font-semibold text-xs md:text-sm mb-1 md:mb-2">Project Description:</h4>
                       <p className="text-xs md:text-sm text-muted-foreground whitespace-pre-wrap break-words">
-                        {request.project_description}
+                        {request.message}
                       </p>
                     </div>
 
