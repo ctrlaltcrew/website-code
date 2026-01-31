@@ -13,7 +13,6 @@ const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [isSignUp, setIsSignUp] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -33,37 +32,19 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      if (isSignUp) {
-        const { error } = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            emailRedirectTo: `${window.location.origin}/admin/dashboard`,
-          },
-        });
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-        if (error) throw error;
+      if (error) throw error;
 
-        toast({
-          title: "Account created!",
-          description: "You can now log in with your credentials.",
-        });
-        setIsSignUp(false);
-      } else {
-        const { error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
+      toast({
+        title: "Welcome back!",
+        description: "Successfully logged in.",
+      });
 
-        if (error) throw error;
-
-        toast({
-          title: "Welcome back!",
-          description: "Successfully logged in.",
-        });
-
-        navigate("/admin/dashboard");
-      }
+      navigate("/admin/dashboard");
     } catch (error: any) {
       handleError(error, USER_ERRORS.AUTH_FAILED);
     } finally {
@@ -96,7 +77,7 @@ const AdminLogin = () => {
               />
             </div>
 
-            <div className="space-y-2">
+            Sign in to manage your blog and content
               <Label htmlFor="password">Password</Label>
               <Input
                 id="password"
@@ -113,27 +94,13 @@ const AdminLogin = () => {
               {loading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Processing...
+                  Signing in...
                 </>
-              ) : isSignUp ? (
-                "Create Account"
               ) : (
                 "Sign In"
               )}
             </Button>
           </form>
-
-          <div className="mt-6 text-center">
-            <button
-              type="button"
-              onClick={() => setIsSignUp(!isSignUp)}
-              className="text-sm text-primary hover:underline"
-            >
-              {isSignUp
-                ? "Already have an account? Sign in"
-                : "Need an account? Sign up"}
-            </button>
-          </div>
         </div>
       </div>
     </div>
