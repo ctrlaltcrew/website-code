@@ -12,9 +12,12 @@ import { useToast } from '@/hooks/use-toast';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Suspense } from 'react';
 import ParticlesBackground from '@/components/3D/ParticlesBackground';
+import { supabase } from '@/integrations/supabase/client';
+import { handleError, USER_ERRORS } from '@/lib/errorHandler';
 
 const Contact = () => {
   const { toast } = useToast();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -29,23 +32,49 @@ const Contact = () => {
   const [open, setOpen] = useState(false);
   const [callForm, setCallForm] = useState({ name: '', time: '' });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    toast({
-      title: "Message Sent! 🚀",
-      description: "We'll get back to you faster than you can say 'Hello World'",
-    });
-    
-    setFormData({
-      name: '',
-      email: '',
-      company: '',
-      service: '',
-      budget: '',
-      message: '',
-      timeline: ''
-    });
+    setLoading(true);
+
+    try {
+      // Save service request to database
+      const { error } = await supabase
+        .from('service_requests')
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            company: formData.company || null,
+            service: formData.service,
+            budget: formData.budget,
+            timeline: formData.timeline,
+            message: formData.message,
+            status: 'pending'
+          }
+        ]);
+
+      if (error) throw error;
+
+      toast({
+        title: "Request Submitted Successfully! 🚀",
+        description: "We'll get back to you faster than you can say 'Hello World'",
+      });
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        service: '',
+        budget: '',
+        message: '',
+        timeline: ''
+      });
+    } catch (error) {
+      handleError(error, USER_ERRORS.SAVE_FAILED);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -215,9 +244,10 @@ const Contact = () => {
                   <Button 
                     type="submit" 
                     size="lg" 
-                    className="w-full bg-white text-black hover:bg-gray-200 transition-all duration-300 shadow-2xl hover:shadow-white/50 hover:scale-105 transform"
+                    disabled={loading}
+                    className="w-full bg-white text-black hover:bg-gray-200 transition-all duration-300 shadow-2xl hover:shadow-white/50 hover:scale-105 transform disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Launch Project 🚀
+                    {loading ? 'Submitting...' : 'Launch Project 🚀'}
                   </Button>
                 </form>
               </CardContent>

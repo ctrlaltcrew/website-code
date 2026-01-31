@@ -21,6 +21,8 @@ const BlogPostForm = ({ postId, onClose }: BlogPostFormProps) => {
   const [slug, setSlug] = useState("");
   const [content, setContent] = useState("");
   const [coverImage, setCoverImage] = useState("");
+  const [coverImageFile, setCoverImageFile] = useState<File | null>(null);
+  const [uploadingImage, setUploadingImage] = useState(false);
   const [author, setAuthor] = useState("");
   const [published, setPublished] = useState(true);
   const { toast } = useToast();
@@ -68,11 +70,71 @@ const BlogPostForm = ({ postId, onClose }: BlogPostFormProps) => {
     }
   };
 
+  const uploadImageToStorage = async (file: File): Promise<string> => {
+    try {
+      setUploadingImage(true);
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+      const filePath = `${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('blog-images')
+        .upload(filePath, file);
+
+      if (uploadError) throw uploadError;
+
+      const { data } = supabase.storage
+        .from('blog-images')
+        .getPublicUrl(filePath);
+
+      return data.publicUrl;
+    } catch (error) {
+      handleError(error, USER_ERRORS.SAVE_FAILED);
+      throw error;
+    } finally {
+      setUploadingImage(false);
+    }
+  };
+
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      toast({
+        title: "Invalid file type",
+        description: "Please upload an image file",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      toast({
+        title: "File too large",
+        description: "Please upload an image smaller than 5MB",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setCoverImageFile(file);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
+      // Upload image if a new file was selected
+      let imageUrl = coverImage;
+      if (coverImageFile) {
+        imageUrl = await uploadImageToStorage(coverImageFile);
+        setCoverImage(imageUrl);
+      }
+
       // Sanitize HTML content to prevent XSS attacks
       const sanitizedContent = DOMPurify.sanitize(content, {
         ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'a', 'blockquote', 'code', 'pre', 'img', 'div', 'span'],
@@ -83,7 +145,7 @@ const BlogPostForm = ({ postId, onClose }: BlogPostFormProps) => {
         title,
         slug,
         content: sanitizedContent,
-        cover_image: coverImage || null,
+        cover_image: imageUrl || null,
         author,
         published,
       };
@@ -175,14 +237,35 @@ const BlogPostForm = ({ postId, onClose }: BlogPostFormProps) => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="coverImage">Cover Image URL</Label>
-            <Input
-              id="coverImage"
-              type="url"
-              value={coverImage}
-              onChange={(e) => setCoverImage(e.target.value)}
-              placeholder="https://example.com/image.jpg"
-            />
+            <Label htmlFor="coverImage">Cover Image</Label>
+            <div className="space-y-3">
+              <Input
+                id="coverImage"
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                disabled={uploadingImage}
+                className="cursor-pointer"
+              />
+              {coverImageFile && (
+                <p className="text-sm text-green-500">
+                  Selected: {coverImageFile.name}
+                </p>
+              )}
+              {coverImage && !coverImageFile && (
+                <div className="space-y-2">
+                  <p className="text-sm text-muted-foreground">Current image:</p>
+                  <img 
+                    src={coverImage} 
+                    alt="Cover preview" 
+                    className="max-w-xs rounded border border-gray-700"
+                  />
+                </div>
+              )}
+              <p className="text-sm text-muted-foreground">
+                Maximum file size: 5MB. Accepted formats: JPG, PNG, GIF, WebP
+              </p>
+            </div>
           </div>
 
           <div className="space-y-2">
