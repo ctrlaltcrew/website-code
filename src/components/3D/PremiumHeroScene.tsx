@@ -156,7 +156,7 @@ const FloatingCube = ({ position, delay = 0 }: { position: [number, number, numb
   return (
     <Float speed={1.5 + delay} rotationIntensity={0.5} floatIntensity={1}>
       <RoundedBox args={[0.4, 0.4, 0.4]} position={position} radius={0.1}>
-        <meshStandardMaterial color="#404040" metalness={1} roughness={0.1} emissive="#666666" emissiveIntensity={0.2} />
+        <meshStandardMaterial color="#606060" metalness={0.8} roughness={0.2} emissive="#707070" emissiveIntensity={0.15} />
       </RoundedBox>
     </Float>
   );
