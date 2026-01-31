@@ -20,10 +20,12 @@ const Home = () => {
       
       {/* Hero Section */}
       <section 
-        className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900"
       >
         {/* Premium 3D Scene */}
-        <Suspense fallback={null}>
+        <Suspense fallback={
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900" />
+        }>
           <PremiumHeroScene />
         </Suspense>
         

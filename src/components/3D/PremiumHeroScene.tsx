@@ -171,6 +171,9 @@ const PremiumHeroScene = () => {
         shadows
         gl={{ antialias: true, alpha: true }}
         style={{ background: 'transparent' }}
+        onCreated={(state) => {
+          console.log('Canvas created successfully');
+        }}
       >
         <ambientLight intensity={0.4} />
         <spotLight position={[5, 10, 0]} angle={0.5} penumbra={1} intensity={2} castShadow color="#ffffff" />
