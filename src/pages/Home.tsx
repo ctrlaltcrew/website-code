@@ -83,7 +83,7 @@ const Home = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div className="p-6 rounded-2xl bg-card border border-border hover:border-primary transition-colors glow-hover">
-              <h3 className="text-4xl font-extrabold text-gradient mb-2">150+</h3>
+              <h3 className="text-4xl font-extrabold text-gradient mb-2">100+</h3>
               <p className="text-muted-foreground">Successful Projects</p>
             </div>
 
