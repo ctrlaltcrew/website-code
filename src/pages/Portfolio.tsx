@@ -1,69 +1,63 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Github, ExternalLink, Brain, Bot, Smartphone } from 'lucide-react';
+import { Github, Brain, Bot, Smartphone, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import { Suspense } from 'react';
-import ParticlesBackground from '@/components/3D/ParticlesBackground';
 
 const Portfolio = () => {
   const projects = [
     {
-      title: "SmartChat AI Assistant",
+      title: "SmartChat AI",
       description: "RAG-powered chatbot that actually understands context (shocking, we know)",
       category: "AI & Chatbots",
       icon: Bot,
       github: "https://github.com/ctrlaltcrew/SmartChat-AI-Assistant",
-      technologies: ["Python", "LangChain", "OpenAI", "Vector DB", "FastAPI"],
+      technologies: ["Python", "LangChain", "OpenAI", "Vector DB"],
       features: [
         "Multi-document knowledge base",
         "Real-time learning capabilities", 
-        "Multi-language support",
-        "Integration with 15+ platforms"
+        "Multi-language support"
       ],
     },
     {
-      title: "PredictaFlow Analytics",
+      title: "PredictaFlow",
       description: "ML pipeline that predicts user behavior better than a fortune teller",
       category: "Data Science",
       icon: Brain,
       github: "https://github.com/ctrlaltcrew/PredictaFlow-Analytics",
-      technologies: ["Python", "TensorFlow", "Apache Airflow", "PostgreSQL", "Docker"],
+      technologies: ["TensorFlow", "Airflow", "PostgreSQL", "Docker"],
       features: [
         "Real-time data processing",
         "Automated model retraining",
-        "A/B testing integration",
-        "Custom dashboard creation"
+        "A/B testing integration"
       ],
     },
     {
-      title: "EcoTrack Mobile App",
+      title: "EcoTrack Mobile",
       description: "Carbon footprint tracker that makes saving the planet addictive",
-      category: "Mobile Development",
+      category: "Mobile App",
       icon: Smartphone,
       github: "https://github.com/ctrlaltcrew/EcoTrack-Mobile-App",
-      technologies: ["React Native", "Node.js", "MongoDB", "Firebase", "Chart.js"],
+      technologies: ["React Native", "Node.js", "Firebase", "Chart.js"],
       features: [
         "Gamified tracking system",
-        "Social challenges & leaderboards",
-        "AI-powered recommendations",
-        "Offline data synchronization"
+        "Social challenges",
+        "AI recommendations"
       ],
     },
     {
-      title: "AutoCode Generator",
+      title: "AutoCode Gen",
       description: "AI that writes code while you drink coffee (the dream is real)",
-      category: "AI & Automation",
+      category: "Automation",
       icon: Bot,
       github: "https://github.com/ctrlaltcrew/SmartChat-AI-Assistant",
-      technologies: ["Python", "GPT-4", "AST Parsing", "Git Integration", "VS Code Extension"],
+      technologies: ["GPT-4", "AST Parsing", "Git", "VS Code Extension"],
       features: [
-        "Natural language to code conversion",
-        "Automatic documentation generation",
-        "Code review suggestions",
-        "Multi-language support"
+        "Natural language to code",
+        "Auto-documentation",
+        "Code review suggestions"
       ],
     }
   ];
@@ -71,80 +65,74 @@ const Portfolio = () => {
   const testimonials = [
     {
       name: "Sarah Chen",
-      role: "CTO, TechFlow Solutions",
+      role: "CTO, TechFlow",
       quote: "Ctrl Alt Crew didn't just build our AI system, they made it so intuitive that our team actually enjoys using it. That's witchcraft.",
-      project: "SmartChat AI Assistant"
+      project: "SmartChat AI"
     },
     {
       name: "Marcus Rodriguez", 
-      role: "Founder, GreenTech Innovations",
-      quote: "They turned our 'crazy idea' into a mobile app with 50,000 users. I'm pretty sure they're actual wizards.",
-      project: "EcoTrack Mobile App"
+      role: "Founder, GreenTech",
+      quote: "They turned our 'crazy idea' into a mobile app with 50k users. I'm pretty sure they're actual wizards.",
+      project: "EcoTrack"
     },
     {
       name: "Dr. Emily Watson",
-      role: "Head of Data, FinanceFlow",
+      role: "Head of Data, FinFlow",
       quote: "Finally, a team that speaks both human and machine. Our ML pipeline has been flawless for 8 months straight.",
-      project: "PredictaFlow Analytics"
+      project: "PredictaFlow"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background font-sans">
       <Navigation />
 
-      {/* Hero Section with 3D Background */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
-        <Suspense fallback={null}>
-          <ParticlesBackground />
-        </Suspense>
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 overflow-hidden bg-background border-b-2 border-border">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
         
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
-            Our <span className="bg-gradient-to-r from-gray-300 to-white bg-clip-text text-transparent">Portfolio</span>
+        <div className="container mx-auto px-4 text-center relative z-10 py-16">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 uppercase tracking-tighter text-foreground">
+            Our <span className="text-primary">Work.</span>
           </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg md:text-2xl text-muted-foreground max-w-3xl mx-auto font-light tracking-wide">
             Real projects, real results, real satisfied clients (and yes, they actually paid us).
           </p>
         </div>
       </section>
 
       {/* Projects Grid */}
-      <section className="py-20 bg-black">
+      <section className="py-24 bg-background border-b-2 border-border">
         <div className="container mx-auto px-4">
-          <div className="grid gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {projects.map((project, index) => (
-              <div key={index} className={`grid grid-cols-1 lg:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
-
-                {/* Project Image */}
-                <div className={`${index % 2 === 1 ? 'lg:col-start-2' : ''} relative group`}>
-                  <Card className="overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800 border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 relative">
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
-                    <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
-                      <project.icon className="h-24 w-24 text-white group-hover:scale-110 transition-transform duration-500" />
-                    </div>
-                  </Card>
+              <div key={index} className="flex flex-col bg-background border-2 border-border hover:border-primary transition-colors duration-300 group">
+                <div className="aspect-video bg-secondary flex items-center justify-center border-b-2 border-border group-hover:bg-primary/5 transition-colors">
+                  <project.icon className="h-24 w-24 text-muted-foreground group-hover:text-primary transition-colors duration-500 group-hover:scale-110" />
                 </div>
 
-                {/* Project Details */}
-                <div className={`space-y-6 ${index % 2 === 1 ? 'lg:col-start-1' : ''}`}>
-                  <div>
-                    <Badge className="mb-4 bg-gray-800 text-gray-200 border-gray-700">
+                <div className="p-8 flex flex-col flex-grow">
+                  <div className="flex justify-between items-start mb-4">
+                    <Badge variant="outline" className="rounded-none border-border bg-secondary text-foreground uppercase tracking-widest text-xs font-bold">
                       {project.category}
                     </Badge>
-                    <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">{project.title}</h3>
-                    <p className="text-lg text-gray-300 mb-6">
-                      {project.description}
-                    </p>
+                    <span className="text-4xl font-black text-border opacity-50 group-hover:text-primary group-hover:opacity-20 transition-colors">
+                      0{index + 1}
+                    </span>
                   </div>
+                  
+                  <h3 className="text-3xl font-black uppercase mb-4 text-foreground tracking-tight">{project.title}</h3>
+                  <p className="text-muted-foreground font-light mb-8">
+                    {project.description}
+                  </p>
 
-                  <div className="space-y-4">
+                  <div className="mt-auto space-y-6">
                     <div>
-                      <h4 className="font-semibold mb-2 text-white">Key Features:</h4>
-                      <ul className="space-y-1">
+                      <h4 className="font-bold text-sm mb-3 text-foreground uppercase tracking-wider">Features:</h4>
+                      <ul className="space-y-2">
                         {project.features.map((feature, i) => (
-                          <li key={i} className="text-gray-400 text-sm flex items-center">
-                            <div className="w-1.5 h-1.5 bg-white rounded-full mr-3" />
+                          <li key={i} className="text-sm text-muted-foreground flex items-center group-hover:text-foreground transition-colors">
+                            <ArrowRight className="h-4 w-4 mr-2 text-primary mt-0.5 flex-shrink-0" />
                             {feature}
                           </li>
                         ))}
@@ -152,28 +140,25 @@ const Portfolio = () => {
                     </div>
 
                     <div>
-                      <h4 className="font-semibold mb-2 text-white">Technologies:</h4>
+                      <h4 className="font-bold text-sm mb-3 text-foreground uppercase tracking-wider">Tech Stack:</h4>
                       <div className="flex flex-wrap gap-2">
                         {project.technologies.map((tech, i) => (
-                          <Badge key={i} variant="outline" className="text-xs bg-gray-800 text-gray-300 border-gray-700">
+                          <Badge key={i} variant="outline" className="rounded-none border-border bg-transparent hover:border-primary text-muted-foreground hover:text-foreground transition-colors">
                             {tech}
                           </Badge>
                         ))}
                       </div>
                     </div>
 
-                    <div className="flex items-center space-x-4">
-                      <Button asChild size="sm" className="bg-white text-black hover:bg-gray-200 transition-all">
+                    <div className="pt-4 border-t border-border">
+                      <Button asChild className="rounded-none font-bold uppercase tracking-widest w-full group-hover:bg-primary transition-colors">
                         <a href={project.github} target="_blank" rel="noopener noreferrer">
-                          <Github className="h-4 w-4 mr-2" />
-                          Code
+                          <Github className="h-4 w-4 mr-2" /> View Source Code
                         </a>
                       </Button>
                     </div>
-
                   </div>
                 </div>
-
               </div>
             ))}
           </div>
@@ -181,27 +166,27 @@ const Portfolio = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-gray-950">
+      <section className="py-24 bg-secondary border-b-2 border-border">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">What Clients Say</h2>
-            <p className="text-xl text-gray-300">
-              Real feedback from real humans who actually use our products.
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 border-b-2 border-border pb-8">
+            <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase text-foreground">Feedback.</h2>
+            <p className="text-lg text-muted-foreground font-light mt-4 md:mt-0 max-w-md text-right">
+              Real feedback from humans who actually use our products.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="group bg-gradient-to-br from-gray-900 to-gray-800 border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 relative overflow-hidden">
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
-                <CardContent className="p-6">
-                  <p className="text-gray-300 mb-4 italic">
-                    "{testimonial.quote}"
+              <Card key={index} className="rounded-none border-2 border-border bg-background hover:border-primary transition-colors duration-300 group shadow-none">
+                <CardContent className="p-8 flex flex-col h-full">
+                  <div className="text-6xl font-serif text-primary opacity-50 mb-4 leading-none">"</div>
+                  <p className="text-foreground font-medium italic mb-8 flex-grow">
+                    {testimonial.quote}
                   </p>
-                  <div>
-                    <p className="font-semibold text-white">{testimonial.name}</p>
-                    <p className="text-sm text-gray-400">{testimonial.role}</p>
-                    <Badge className="mt-2 text-xs bg-gray-800 text-gray-300 border-gray-700">
+                  <div className="border-t border-border pt-4">
+                    <p className="font-black text-foreground uppercase tracking-tight">{testimonial.name}</p>
+                    <p className="text-sm text-muted-foreground uppercase tracking-widest mb-2">{testimonial.role}</p>
+                    <Badge variant="outline" className="rounded-none text-xs text-primary border-primary bg-primary/5">
                       {testimonial.project}
                     </Badge>
                   </div>
@@ -213,11 +198,11 @@ const Portfolio = () => {
       </section>
 
       {/* Tech Stack */}
-      <section className="py-20 bg-black">
+      <section className="py-24 bg-background">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">Our Tech Arsenal</h2>
-          <p className="text-xl text-gray-300 mb-12">
-            The tools we use to turn caffeine into code
+          <h2 className="text-4xl md:text-6xl font-black mb-8 uppercase tracking-tighter text-foreground">Our Arsenal.</h2>
+          <p className="text-lg md:text-xl text-muted-foreground mb-16 font-light max-w-2xl mx-auto">
+            The industrial-grade tools we use to turn caffeine into scalable code.
           </p>
           
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
@@ -225,9 +210,8 @@ const Portfolio = () => {
               "Python", "React", "Node.js", "TypeScript", "TensorFlow", "Docker",
               "AWS", "PostgreSQL", "MongoDB", "Redis", "Kubernetes", "OpenAI"
             ].map((tech, index) => (
-              <div key={index} className="group p-4 rounded-lg bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-white/50 transition-all duration-300 hover:shadow-lg hover:shadow-white/10 hover:scale-105 relative overflow-hidden">
-                <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-                <span className="text-white font-medium">{tech}</span>
+              <div key={index} className="p-6 border-2 border-border bg-secondary hover:border-primary hover:bg-background hover:text-primary transition-all duration-300 flex items-center justify-center font-black uppercase tracking-wider text-sm text-foreground">
+                {tech}
               </div>
             ))}
           </div>
@@ -235,25 +219,20 @@ const Portfolio = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gray-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-        </div>
-        
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">
-            Ready to Join Our Success Stories?
+      <section className="py-32 bg-foreground text-background">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black mb-8 uppercase tracking-tighter">
+            Ready to Build?
           </h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Let's create something amazing together (and maybe get some testimonials that make us blush)
+          <p className="text-lg sm:text-xl md:text-2xl mb-12 max-w-2xl mx-auto font-light opacity-80">
+            Let's create something amazing together.
           </p>
           <Button 
             asChild 
             size="lg" 
-            className="bg-white text-black hover:bg-gray-200 transition-all duration-300 shadow-2xl hover:shadow-white/50 hover:scale-105 transform"
+            className="bg-primary text-primary-foreground hover:bg-background hover:text-foreground text-lg px-12 py-8 rounded-none font-black tracking-widest uppercase transition-colors"
           >
-            <Link to="/contact">Start Your Project 🚀</Link>
+            <Link to="/contact">Start Your Project</Link>
           </Button>
         </div>
       </section>

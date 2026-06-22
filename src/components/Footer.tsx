@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { Mail, Github, Linkedin, Twitter } from 'lucide-react';
-import KeyboardLogo from './KeyboardLogo';
 
 const Footer = () => {
   return (
@@ -9,7 +8,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <KeyboardLogo size="sm" />
+            <img 
+              src="/logo-stamp.png" 
+              alt="Ctrl Alt Crew Software House" 
+              className="h-24 w-24 dark:invert opacity-80 hover:opacity-100 transition-opacity animate-[spin_20s_linear_infinite]" 
+            />
             <p className="text-muted-foreground text-sm">
               Rebooting old ideas into bold AI-powered solutions. 
               Your tech partners for the future.

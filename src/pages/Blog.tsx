@@ -1,12 +1,11 @@
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { supabase } from "@/integrations/supabase/client";
-import { Loader2 } from "lucide-react";
+import { Loader2, ArrowRight } from "lucide-react";
 import { Helmet } from "react-helmet";
 import { handleError, USER_ERRORS } from "@/lib/errorHandler";
-import ParticlesBackground from "@/components/3D/ParticlesBackground";
 
 interface BlogPost {
   id: string;
@@ -66,82 +65,76 @@ const Blog = () => {
         />
       </Helmet>
 
-      <div className="min-h-screen bg-black">
+      <div className="min-h-screen bg-background font-sans flex flex-col">
         <Navigation />
 
-        {/* Hero Section with 3D Background */}
-        <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
-          <Suspense fallback={null}>
-            <ParticlesBackground />
-          </Suspense>
+        {/* Hero Section */}
+        <section className="relative pt-32 pb-20 overflow-hidden bg-background border-b-2 border-border">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
           
-          <div className="container mx-auto px-4 text-center relative z-10">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4 animate-fade-in">
-              <span className="bg-gradient-to-r from-gray-300 to-white bg-clip-text text-transparent">
-                Tech Chronicles
-              </span>
+          <div className="container mx-auto px-4 text-center relative z-10 py-16">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 uppercase tracking-tighter text-foreground">
+              Tech <span className="text-primary">Chronicles.</span>
             </h1>
-            <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto">
-              Exploring AI, innovation, and the future of technology
+            <p className="text-lg md:text-2xl text-muted-foreground max-w-3xl mx-auto font-light tracking-wide">
+              Exploring AI, innovation, and the absolute bleeding edge of the future.
             </p>
           </div>
         </section>
 
-        <main className="container mx-auto px-4 sm:px-6 lg:px-12 py-20">
-
+        <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-24 flex-grow">
           {loading ? (
             <div className="flex justify-center items-center min-h-[400px]">
-              <Loader2 className="h-8 w-8 animate-spin text-white" />
+              <Loader2 className="h-12 w-12 animate-spin text-primary" />
             </div>
           ) : posts.length === 0 ? (
-            <div className="text-center py-20 px-4">
-              <p className="text-lg sm:text-xl text-gray-300">
-                No posts published yet. Check back soon!
+            <div className="text-center py-32 px-4 border-2 border-dashed border-border bg-secondary">
+              <p className="text-xl md:text-2xl text-muted-foreground font-black uppercase tracking-widest">
+                No articles yet. The compiler is still running...
               </p>
             </div>
           ) : (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
-              {posts.map((post, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {posts.map((post) => (
                 <Link
                   key={post.id}
                   to={`/blog/${post.slug}`}
-                  className="group"
-                  style={{ animationDelay: `${index * 100}ms` }}
+                  className="group flex flex-col"
                 >
-                  <article className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-white/50 transition-all duration-500 h-full flex flex-col animate-slide-up hover:shadow-2xl hover:shadow-white/10 relative">
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
-                    
-                    {post.cover_image && (
-                      <div className="relative h-48 overflow-hidden">
+                  <article className="bg-background border-2 border-border hover:border-primary transition-colors duration-300 h-full flex flex-col">
+                    {post.cover_image ? (
+                      <div className="relative h-64 overflow-hidden border-b-2 border-border">
                         <img
                           src={post.cover_image}
                           alt={post.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
                           loading="lazy"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 to-transparent" />
+                      </div>
+                    ) : (
+                      <div className="h-48 border-b-2 border-border bg-secondary flex items-center justify-center">
+                         <span className="text-4xl font-black text-muted-foreground opacity-20">CTRL ALT</span>
                       </div>
                     )}
 
-                    <div className="p-4 sm:p-6 flex-1 flex flex-col">
-                      <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-400 mb-3">
+                    <div className="p-8 flex-1 flex flex-col">
+                      <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">
                         <span>{post.author}</span>
-                        <span>•</span>
+                        <span className="text-primary">•</span>
                         <time>{formatDate(post.created_at)}</time>
                       </div>
 
-                      <h2 className="text-xl sm:text-2xl font-bold mb-3 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent group-hover:scale-105 transition-transform">
+                      <h2 className="text-2xl font-black mb-4 uppercase tracking-tight text-foreground group-hover:text-primary transition-colors">
                         {post.title}
                       </h2>
 
-                      <p className="text-sm sm:text-base text-gray-300 flex-1 mb-4">
+                      <p className="text-muted-foreground font-light flex-1 mb-8 leading-relaxed">
                         {getExcerpt(post.content)}
                       </p>
 
-                      <span className="text-white font-medium inline-flex items-center gap-2 group-hover:gap-3 transition-all text-sm sm:text-base">
-                        Read More
-                        <span className="text-xl">→</span>
-                      </span>
+                      <div className="flex items-center text-foreground font-black uppercase tracking-widest text-sm group-hover:text-primary transition-colors">
+                        Read Article <ArrowRight className="ml-2 w-4 h-4" />
+                      </div>
                     </div>
                   </article>
                 </Link>

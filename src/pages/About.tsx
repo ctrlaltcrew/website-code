@@ -1,106 +1,85 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Coffee, Heart, Lightbulb, Users } from 'lucide-react';
+import { Coffee, Heart, Lightbulb, Users, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import { Suspense } from 'react';
-import ParticlesBackground from '@/components/3D/ParticlesBackground';
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background font-sans">
       <Navigation />
       
-      {/* Hero Section with 3D Background */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
-        {/* 3D Particles Background */}
-        <Suspense fallback={null}>
-          <ParticlesBackground />
-        </Suspense>
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 overflow-hidden bg-background border-b-2 border-border">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
         
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
-            About <span className="bg-gradient-to-r from-gray-300 to-white bg-clip-text text-transparent">Ctrl Alt Crew</span>
+        <div className="container mx-auto px-4 text-center relative z-10 py-16">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 uppercase tracking-tighter text-foreground">
+            Our <span className="text-primary">Story.</span>
           </h1>
-          <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-2xl text-muted-foreground max-w-3xl mx-auto font-light tracking-wide">
             We're not your average software house. We're the people who think "Have you tried turning it off and on again?" 
             is both a life philosophy and a valid debugging strategy.
           </p>
         </div>
       </section>
 
-      {/* Our Story */}
-      <section className="py-16 sm:py-20 bg-gradient-to-b from-background to-gray-900/50 relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute top-1/4 left-0 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-0 w-64 h-64 bg-gray-500/5 rounded-full blur-3xl"></div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold text-center mb-16 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">Our Story</h2>
+      {/* Timeline Section */}
+      <section className="py-24 bg-secondary border-b-2 border-border">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <h2 className="text-4xl md:text-6xl font-black text-center mb-24 uppercase tracking-tighter text-foreground">Timeline.</h2>
+          
+          <div className="relative">
+            {/* Vertical Line */}
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-border transform -translate-x-1/2"></div>
             
-            {/* Timeline Layout */}
+            {/* Story Item 1 - Right */}
+            <div className="relative mb-16 md:mb-24">
+              <div className="md:flex md:items-center">
+                <div className="md:w-1/2 md:pr-16"></div>
+                <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-background border-4 border-primary z-10"></div>
+                <div className="md:w-1/2 md:pl-16">
+                  <div className="p-8 bg-background border-2 border-border hover:border-primary transition-colors duration-300">
+                    <h3 className="text-2xl font-black uppercase mb-4 text-foreground">The Origin</h3>
+                    <p className="text-muted-foreground font-light leading-relaxed">
+                      Born from a shared frustration with buggy software and a mutual love for clean code and coffee, 
+                      Ctrl Alt Crew emerged as the answer to "Why can't tech be both powerful and fun?"
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Story Item 2 - Left */}
+            <div className="relative mb-16 md:mb-24">
+              <div className="md:flex md:items-center md:flex-row-reverse">
+                <div className="md:w-1/2 md:pl-16"></div>
+                <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-background border-4 border-foreground z-10"></div>
+                <div className="md:w-1/2 md:pr-16">
+                  <div className="p-8 bg-background border-2 border-border hover:border-foreground transition-colors duration-300">
+                    <h3 className="text-2xl font-black uppercase mb-4 text-foreground">The Philosophy</h3>
+                    <p className="text-muted-foreground font-light leading-relaxed">
+                      We believe that the best solutions come from combining technical excellence with human creativity. 
+                      Our team doesn't just write code – we craft digital experiences that make users smile and businesses thrive.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Story Item 3 - Right */}
             <div className="relative">
-              {/* Vertical Line */}
-              <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-primary/30 to-transparent transform -translate-x-1/2"></div>
-              
-              {/* Story Item 1 - Right */}
-              <div className="relative mb-12 md:mb-16">
-                <div className="md:flex md:items-center">
-                  <div className="md:w-1/2 md:pr-12"></div>
-                  <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-[0_0_15px_hsl(var(--primary)_/_0.5)]"></div>
-                  <div className="md:w-1/2 md:pl-12">
-                    <div className="group relative">
-                      <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
-                      <div className="relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 group-hover:border-primary/50 transition-all duration-500">
-                        <div className="absolute -left-3 top-8 w-6 h-6 bg-gray-800 border-l border-t border-gray-700 transform -rotate-45 hidden md:block"></div>
-                        <p className="text-base sm:text-lg leading-relaxed text-gray-300 group-hover:text-white transition-colors">
-                          Born from a shared frustration with buggy software and a mutual love for clean code and coffee, 
-                          Ctrl Alt Crew emerged as the answer to "Why can't tech be both powerful and fun?"
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Story Item 2 - Left */}
-              <div className="relative mb-12 md:mb-16">
-                <div className="md:flex md:items-center md:flex-row-reverse">
-                  <div className="md:w-1/2 md:pl-12"></div>
-                  <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-accent rounded-full border-4 border-background shadow-[0_0_15px_hsl(var(--accent)_/_0.5)]"></div>
-                  <div className="md:w-1/2 md:pr-12">
-                    <div className="group relative">
-                      <div className="absolute -inset-1 bg-gradient-to-r from-accent/20 to-primary/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
-                      <div className="relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 group-hover:border-accent/50 transition-all duration-500">
-                        <div className="absolute -right-3 top-8 w-6 h-6 bg-gray-800 border-r border-b border-gray-700 transform -rotate-45 hidden md:block"></div>
-                        <p className="text-base sm:text-lg leading-relaxed text-gray-300 group-hover:text-white transition-colors">
-                          We believe that the best solutions come from combining technical excellence with human creativity. 
-                          Our team doesn't just write code – we craft digital experiences that make users smile and businesses thrive.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Story Item 3 - Right */}
-              <div className="relative">
-                <div className="md:flex md:items-center">
-                  <div className="md:w-1/2 md:pr-12"></div>
-                  <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-[0_0_15px_hsl(var(--primary)_/_0.5)]"></div>
-                  <div className="md:w-1/2 md:pl-12">
-                    <div className="group relative">
-                      <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
-                      <div className="relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 group-hover:border-primary/50 transition-all duration-500">
-                        <div className="absolute -left-3 top-8 w-6 h-6 bg-gray-800 border-l border-t border-gray-700 transform -rotate-45 hidden md:block"></div>
-                        <p className="text-base sm:text-lg leading-relaxed text-gray-300 group-hover:text-white transition-colors">
-                          From AI that actually makes sense to chatbots that don't make you want to throw your laptop out the window, 
-                          we're here to prove that great software can be both intelligent and intuitive.
-                        </p>
-                      </div>
-                    </div>
+              <div className="md:flex md:items-center">
+                <div className="md:w-1/2 md:pr-16"></div>
+                <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-background border-4 border-primary z-10"></div>
+                <div className="md:w-1/2 md:pl-16">
+                  <div className="p-8 bg-background border-2 border-border hover:border-primary transition-colors duration-300">
+                    <h3 className="text-2xl font-black uppercase mb-4 text-foreground">The Future</h3>
+                    <p className="text-muted-foreground font-light leading-relaxed">
+                      From AI that actually makes sense to chatbots that don't make you want to throw your laptop out the window, 
+                      we're here to prove that great software can be both intelligent and intuitive.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -110,58 +89,59 @@ const About = () => {
       </section>
 
       {/* Our Values */}
-      <section className="py-16 sm:py-20 bg-gray-950">
+      <section className="py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-16 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">What Drives Us</h2>
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 border-b-2 border-border pb-8">
+            <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase text-foreground">Values.</h2>
+            <p className="text-lg text-muted-foreground font-light mt-4 md:mt-0">
+              The core principles that drive our engineering.
+            </p>
+          </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            <Card className="group bg-gradient-to-br from-gray-900 to-gray-800 border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
-              <CardContent className="p-6 sm:p-8 text-center">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-lg bg-gradient-to-br from-gray-700 to-gray-600 flex items-center justify-center shadow-lg group-hover:shadow-white/20 group-hover:scale-110 transition-all duration-300">
-                  <Coffee className="h-8 w-8 text-white" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <Card className="rounded-none border-2 border-border bg-transparent hover:border-primary transition-colors duration-300 group shadow-none">
+              <CardContent className="p-8 text-center flex flex-col items-center">
+                <div className="w-16 h-16 mb-6 bg-secondary flex items-center justify-center group-hover:bg-primary transition-colors">
+                  <Coffee className="h-8 w-8 text-foreground group-hover:text-primary-foreground transition-colors" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-4 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">Caffeine-Driven Innovation</h3>
-                <p className="text-sm sm:text-base text-gray-400 group-hover:text-gray-200 transition-colors">
+                <h3 className="text-xl font-black uppercase mb-4 text-foreground tracking-tight">Caffeine-Driven</h3>
+                <p className="text-muted-foreground font-light leading-relaxed text-sm">
                   Great code requires great coffee. We measure productivity in espresso shots.
                 </p>
               </CardContent>
             </Card>
             
-            <Card className="group bg-gradient-to-br from-gray-900 to-gray-800 border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
-              <CardContent className="p-6 sm:p-8 text-center">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-lg bg-gradient-to-br from-gray-600 to-gray-500 flex items-center justify-center shadow-lg group-hover:shadow-white/20 group-hover:scale-110 transition-all duration-300">
-                  <Heart className="h-8 w-8 text-white" />
+            <Card className="rounded-none border-2 border-border bg-transparent hover:border-primary transition-colors duration-300 group shadow-none">
+              <CardContent className="p-8 text-center flex flex-col items-center">
+                <div className="w-16 h-16 mb-6 bg-secondary flex items-center justify-center group-hover:bg-primary transition-colors">
+                  <Heart className="h-8 w-8 text-foreground group-hover:text-primary-foreground transition-colors" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-4 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">User-First Philosophy</h3>
-                <p className="text-sm sm:text-base text-gray-400 group-hover:text-gray-200 transition-colors">
+                <h3 className="text-xl font-black uppercase mb-4 text-foreground tracking-tight">User-First</h3>
+                <p className="text-muted-foreground font-light leading-relaxed text-sm">
                   If your grandma can't use it, we haven't done our job right.
                 </p>
               </CardContent>
             </Card>
             
-            <Card className="group bg-gradient-to-br from-gray-900 to-gray-800 border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
-              <CardContent className="p-6 sm:p-8 text-center">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-lg bg-gradient-to-br from-white to-gray-400 flex items-center justify-center shadow-lg group-hover:shadow-white/20 group-hover:scale-110 transition-all duration-300">
-                  <Lightbulb className="h-8 w-8 text-black" />
+            <Card className="rounded-none border-2 border-border bg-transparent hover:border-primary transition-colors duration-300 group shadow-none">
+              <CardContent className="p-8 text-center flex flex-col items-center">
+                <div className="w-16 h-16 mb-6 bg-secondary flex items-center justify-center group-hover:bg-primary transition-colors">
+                  <Lightbulb className="h-8 w-8 text-foreground group-hover:text-primary-foreground transition-colors" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-4 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">Creative Problem Solving</h3>
-                <p className="text-sm sm:text-base text-gray-400 group-hover:text-gray-200 transition-colors">
+                <h3 className="text-xl font-black uppercase mb-4 text-foreground tracking-tight">Creative Logic</h3>
+                <p className="text-muted-foreground font-light leading-relaxed text-sm">
                   Every bug is just a feature waiting to be properly documented.
                 </p>
               </CardContent>
             </Card>
             
-            <Card className="group bg-gradient-to-br from-gray-900 to-gray-800 border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
-              <CardContent className="p-6 sm:p-8 text-center">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-lg bg-gradient-to-br from-gray-500 to-gray-600 flex items-center justify-center shadow-lg group-hover:shadow-white/20 group-hover:scale-110 transition-all duration-300">
-                  <Users className="h-8 w-8 text-white" />
+            <Card className="rounded-none border-2 border-border bg-transparent hover:border-primary transition-colors duration-300 group shadow-none">
+              <CardContent className="p-8 text-center flex flex-col items-center">
+                <div className="w-16 h-16 mb-6 bg-secondary flex items-center justify-center group-hover:bg-primary transition-colors">
+                  <Users className="h-8 w-8 text-foreground group-hover:text-primary-foreground transition-colors" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-4 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">Team Collaboration</h3>
-                <p className="text-sm sm:text-base text-gray-400 group-hover:text-gray-200 transition-colors">
+                <h3 className="text-xl font-black uppercase mb-4 text-foreground tracking-tight">Collaboration</h3>
+                <p className="text-muted-foreground font-light leading-relaxed text-sm">
                   We believe in pair programming, code reviews, and shared pizza.
                 </p>
               </CardContent>
@@ -171,62 +151,54 @@ const About = () => {
       </section>
 
       {/* Fun Facts */}
-      <section className="py-16 sm:py-20 bg-gradient-to-b from-gray-900/50 to-background">
+      <section className="py-24 bg-secondary">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-16 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">Fun Facts About Us</h2>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="group text-center p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 backdrop-blur-sm">
-              <div className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform duration-300">∞</div>
-              <div className="text-lg font-semibold mb-2 text-white">Lines of Code</div>
-              <div className="text-sm text-gray-400 group-hover:text-gray-200 transition-colors">And still counting (mostly comments)</div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="p-8 bg-background border-2 border-border hover:border-primary transition-colors text-center flex flex-col justify-center min-h-[250px]">
+              <div className="text-6xl font-black text-foreground mb-4 font-mono">∞</div>
+              <div className="text-xl font-black uppercase tracking-tight mb-2">Lines of Code</div>
+              <div className="text-muted-foreground font-light text-sm">And still counting (mostly comments)</div>
             </div>
             
-            <div className="group text-center p-8 rounded-2xl bg-gradient-to-br from-gray-800/80 to-gray-900/80 border border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 backdrop-blur-sm">
-              <div className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform duration-300">404</div>
-              <div className="text-lg font-semibold mb-2 text-white">Bugs Fixed</div>
-              <div className="text-sm text-gray-400 group-hover:text-gray-200 transition-colors">Error: Number too large to display</div>
+            <div className="p-8 bg-background border-2 border-border hover:border-primary transition-colors text-center flex flex-col justify-center min-h-[250px]">
+              <div className="text-6xl font-black text-foreground mb-4 font-mono">404</div>
+              <div className="text-xl font-black uppercase tracking-tight mb-2">Bugs Fixed</div>
+              <div className="text-muted-foreground font-light text-sm">Error: Number too large to display</div>
             </div>
             
-            <div className="group text-center p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 backdrop-blur-sm">
-              <div className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform duration-300">24/7</div>
-              <div className="text-lg font-semibold mb-2 text-white">Stack Overflow Monitoring</div>
-              <div className="text-sm text-gray-400 group-hover:text-gray-200 transition-colors">Someone has to watch the watchers</div>
+            <div className="p-8 bg-background border-2 border-border hover:border-primary transition-colors text-center flex flex-col justify-center min-h-[250px]">
+              <div className="text-6xl font-black text-foreground mb-4 font-mono">24/7</div>
+              <div className="text-xl font-black uppercase tracking-tight mb-2">SO Monitoring</div>
+              <div className="text-muted-foreground font-light text-sm">Someone has to watch the watchers</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16 sm:py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black relative overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gray-400 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-            Want to Join Our Debug Squad?
+      {/* CTA Section */}
+      <section className="py-32 bg-foreground text-background">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black mb-8 uppercase tracking-tighter">
+            Join the <br className="md:hidden" /> Squad?
           </h2>
-          <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Whether you need our services or want to join our team, we'd love to chat!
+          <p className="text-lg sm:text-xl md:text-2xl mb-12 max-w-2xl mx-auto font-light opacity-80">
+            Whether you need our services or want to join our team, we'd love to chat.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Button 
               asChild 
               size="lg" 
-              className="bg-white text-black hover:bg-gray-200 transition-all duration-300 shadow-2xl hover:shadow-white/50 hover:scale-105 transform"
+              className="bg-primary text-primary-foreground hover:bg-background hover:text-foreground text-lg px-10 py-8 rounded-none font-black tracking-widest uppercase transition-colors"
             >
-              <Link to="/contact">Let's Talk 💬</Link>
+              <Link to="/contact">Let's Talk <ArrowRight className="ml-2 w-5 h-5" /></Link>
             </Button>
             <Button 
               asChild 
               variant="outline" 
               size="lg"
-              className="border-2 border-white text-white hover:bg-white hover:text-black transition-all duration-300"
+              className="bg-transparent border-2 border-background text-background hover:bg-background hover:text-foreground text-lg px-10 py-8 rounded-none font-black tracking-widest uppercase transition-colors"
             >
-              <Link to="/services">See Our Services</Link>
+              <Link to="/services">See Services</Link>
             </Button>
           </div>
         </div>

@@ -1,17 +1,15 @@
 import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Mail, Phone, MapPin, Clock, Coffee, MessageCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Coffee, MessageCircle, ArrowRight } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { useToast } from '@/hooks/use-toast';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Suspense } from 'react';
-import ParticlesBackground from '@/components/3D/ParticlesBackground';
 import { supabase } from '@/integrations/supabase/client';
 import { handleError, USER_ERRORS } from '@/lib/errorHandler';
 
@@ -37,7 +35,6 @@ const Contact = () => {
     setLoading(true);
 
     try {
-      // Save service request to database
       const { error } = await supabase
         .from('service_requests')
         .insert([
@@ -59,11 +56,10 @@ const Contact = () => {
       }
 
       toast({
-        title: "Request Submitted Successfully! 🚀",
+        title: "INITIALIZATION SUCCESSFUL",
         description: "We'll get back to you faster than you can say 'Hello World'",
       });
 
-      // Reset form
       setFormData({
         name: '',
         email: '',
@@ -84,7 +80,6 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  // WhatsApp helpers
   const handleWhatsAppCall = () => {
     const number = "923349650000";
     const text = `Hi, I am ${callForm.name || "a guest"} and I'd like to schedule a call at ${callForm.time || "a suitable time"}.`;
@@ -100,349 +95,325 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background font-sans">
       <Navigation />
       
-      {/* Hero Section with 3D Background */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
-        <Suspense fallback={null}>
-          <ParticlesBackground />
-        </Suspense>
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 overflow-hidden bg-background border-b-2 border-border">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
         
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
-            Let's <span className="bg-gradient-to-r from-gray-300 to-white bg-clip-text text-transparent">Debug</span> Together
+        <div className="container mx-auto px-4 text-center relative z-10 py-16">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 uppercase tracking-tighter text-foreground">
+            Contact <span className="text-primary">Us.</span>
           </h1>
-          <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto">
-            Got a project that needs our special blend of code and caffeine? 
-            Let's turn your "it's complicated" into "it just works."
+          <p className="text-lg md:text-2xl text-muted-foreground max-w-3xl mx-auto font-light tracking-wide">
+            Got a project that needs our special blend of code and caffeine? Let's turn your "it's complicated" into "it just works."
           </p>
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-12 sm:py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-12">
+      <div className="container mx-auto px-4 py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <Card className="group bg-gradient-to-br from-gray-900 to-gray-800 border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
-              
-              <CardHeader>
-                <CardTitle className="text-xl sm:text-2xl bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">Start Your Project</CardTitle>
-                <p className="text-sm sm:text-base text-gray-400 group-hover:text-gray-200 transition-colors">
-                  Fill out the form below and we'll get back to you faster than a hot-fixed production bug.
+            <div className="bg-background border-2 border-border p-8 md:p-12">
+              <div className="mb-12">
+                <h2 className="text-4xl font-black uppercase tracking-tight mb-4 text-foreground">Initialize Project</h2>
+                <p className="text-muted-foreground font-light text-lg">
+                  Fill out the parameters below and we'll process your request immediately.
                 </p>
-              </CardHeader>
+              </div>
               
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="name" className="text-gray-300">Name *</Label>
-                      <Input
-                        id="name"
-                        value={formData.name}
-                        onChange={(e) => handleInputChange('name', e.target.value)}
-                        placeholder="Your name"
-                        required
-                        className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 focus:border-white/50"
-                      />
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <Label htmlFor="email" className="text-gray-300">Email *</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) => handleInputChange('email', e.target.value)}
-                        placeholder="your.email@company.com"
-                        required
-                        className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 focus:border-white/50"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="company" className="text-gray-300">Company</Label>
-                      <Input
-                        id="company"
-                        value={formData.company}
-                        onChange={(e) => handleInputChange('company', e.target.value)}
-                        placeholder="Your awesome company"
-                        className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 focus:border-white/50"
-                      />
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <Label htmlFor="service" className="text-gray-300">Service Needed *</Label>
-                      <Select onValueChange={(value) => handleInputChange('service', value)} required>
-                        <SelectTrigger className="bg-gray-800 border-gray-700 text-white">
-                          <SelectValue placeholder="Select a service" />
-                        </SelectTrigger>
-                        <SelectContent className="bg-gray-800 border-gray-700">
-                          <SelectItem value="ai-ml">AI & Machine Learning</SelectItem>
-                          <SelectItem value="web-dev">Web Development</SelectItem>
-                          <SelectItem value="mobile-app">Mobile Applications</SelectItem>
-                          <SelectItem value="chatbot">Chatbots & RAG</SelectItem>
-                          <SelectItem value="data-engineering">Data Engineering</SelectItem>
-                          <SelectItem value="automation">Automation & Integration</SelectItem>
-                          <SelectItem value="consulting">Technical Consulting</SelectItem>
-                          <SelectItem value="not-sure">Not Sure Yet</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="budget" className="text-gray-300">Budget Range</Label>
-                      <Select onValueChange={(value) => handleInputChange('budget', value)}>
-                        <SelectTrigger className="bg-gray-800 border-gray-700 text-white">
-                          <SelectValue placeholder="Select budget range" />
-                        </SelectTrigger>
-                        <SelectContent className="bg-gray-800 border-gray-700">
-                          <SelectItem value="under-10k">Under $10,000</SelectItem>
-                          <SelectItem value="10k-25k">$10,000 - $25,000</SelectItem>
-                          <SelectItem value="25k-50k">$25,000 - $50,000</SelectItem>
-                          <SelectItem value="50k-100k">$50,000 - $100,000</SelectItem>
-                          <SelectItem value="100k-plus">$100,000+</SelectItem>
-                          <SelectItem value="discuss">Let's Discuss</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <Label htmlFor="timeline" className="text-gray-300">Timeline</Label>
-                      <Select onValueChange={(value) => handleInputChange('timeline', value)}>
-                        <SelectTrigger className="bg-gray-800 border-gray-700 text-white">
-                          <SelectValue placeholder="Project timeline" />
-                        </SelectTrigger>
-                        <SelectContent className="bg-gray-800 border-gray-700">
-                          <SelectItem value="asap">ASAP (Rush Job)</SelectItem>
-                          <SelectItem value="1-month">Within 1 Month</SelectItem>
-                          <SelectItem value="2-3-months">2-3 Months</SelectItem>
-                          <SelectItem value="3-6-months">3-6 Months</SelectItem>
-                          <SelectItem value="6-plus-months">6+ Months</SelectItem>
-                          <SelectItem value="flexible">Flexible</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="message" className="text-gray-300">Project Details *</Label>
-                    <Textarea
-                      id="message"
-                      value={formData.message}
-                      onChange={(e) => handleInputChange('message', e.target.value)}
-                      placeholder="Tell us about your project, your pain points, or just say hi! The more details, the better we can help."
-                      rows={5}
+              <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-3">
+                    <Label htmlFor="name" className="text-foreground uppercase font-bold tracking-widest text-xs">Name *</Label>
+                    <Input
+                      id="name"
+                      value={formData.name}
+                      onChange={(e) => handleInputChange('name', e.target.value)}
+                      placeholder="Your name"
                       required
-                      className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 focus:border-white/50"
+                      className="bg-transparent border-2 border-border rounded-none h-14 text-foreground placeholder:text-muted-foreground/50 focus-visible:ring-0 focus-visible:border-primary transition-colors"
                     />
                   </div>
+                  
+                  <div className="space-y-3">
+                    <Label htmlFor="email" className="text-foreground uppercase font-bold tracking-widest text-xs">Email *</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      placeholder="your.email@company.com"
+                      required
+                      className="bg-transparent border-2 border-border rounded-none h-14 text-foreground placeholder:text-muted-foreground/50 focus-visible:ring-0 focus-visible:border-primary transition-colors"
+                    />
+                  </div>
+                </div>
 
-                  <Button 
-                    type="submit" 
-                    size="lg" 
-                    disabled={loading}
-                    className="w-full bg-white text-black hover:bg-gray-200 transition-all duration-300 shadow-2xl hover:shadow-white/50 hover:scale-105 transform disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {loading ? 'Submitting...' : 'Launch Project 🚀'}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-3">
+                    <Label htmlFor="company" className="text-foreground uppercase font-bold tracking-widest text-xs">Company</Label>
+                    <Input
+                      id="company"
+                      value={formData.company}
+                      onChange={(e) => handleInputChange('company', e.target.value)}
+                      placeholder="Your awesome company"
+                      className="bg-transparent border-2 border-border rounded-none h-14 text-foreground placeholder:text-muted-foreground/50 focus-visible:ring-0 focus-visible:border-primary transition-colors"
+                    />
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Label htmlFor="service" className="text-foreground uppercase font-bold tracking-widest text-xs">Service Needed *</Label>
+                    <Select onValueChange={(value) => handleInputChange('service', value)} required>
+                      <SelectTrigger className="bg-transparent border-2 border-border rounded-none h-14 text-foreground focus:ring-0 focus:border-primary transition-colors">
+                        <SelectValue placeholder="Select a service" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-background border-2 border-border rounded-none">
+                        <SelectItem value="ai-ml">AI & Machine Learning</SelectItem>
+                        <SelectItem value="web-dev">Web Development</SelectItem>
+                        <SelectItem value="mobile-app">Mobile Applications</SelectItem>
+                        <SelectItem value="chatbot">Chatbots & RAG</SelectItem>
+                        <SelectItem value="data-engineering">Data Engineering</SelectItem>
+                        <SelectItem value="automation">Automation & Integration</SelectItem>
+                        <SelectItem value="consulting">Technical Consulting</SelectItem>
+                        <SelectItem value="not-sure">Not Sure Yet</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-3">
+                    <Label htmlFor="budget" className="text-foreground uppercase font-bold tracking-widest text-xs">Budget Range</Label>
+                    <Select onValueChange={(value) => handleInputChange('budget', value)}>
+                      <SelectTrigger className="bg-transparent border-2 border-border rounded-none h-14 text-foreground focus:ring-0 focus:border-primary transition-colors">
+                        <SelectValue placeholder="Select budget range" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-background border-2 border-border rounded-none">
+                        <SelectItem value="under-10k">Under $10,000</SelectItem>
+                        <SelectItem value="10k-25k">$10,000 - $25,000</SelectItem>
+                        <SelectItem value="25k-50k">$25,000 - $50,000</SelectItem>
+                        <SelectItem value="50k-100k">$50,000 - $100,000</SelectItem>
+                        <SelectItem value="100k-plus">$100,000+</SelectItem>
+                        <SelectItem value="discuss">Let's Discuss</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <Label htmlFor="timeline" className="text-foreground uppercase font-bold tracking-widest text-xs">Timeline</Label>
+                    <Select onValueChange={(value) => handleInputChange('timeline', value)}>
+                      <SelectTrigger className="bg-transparent border-2 border-border rounded-none h-14 text-foreground focus:ring-0 focus:border-primary transition-colors">
+                        <SelectValue placeholder="Project timeline" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-background border-2 border-border rounded-none">
+                        <SelectItem value="asap">ASAP (Rush Job)</SelectItem>
+                        <SelectItem value="1-month">Within 1 Month</SelectItem>
+                        <SelectItem value="2-3-months">2-3 Months</SelectItem>
+                        <SelectItem value="3-6-months">3-6 Months</SelectItem>
+                        <SelectItem value="6-plus-months">6+ Months</SelectItem>
+                        <SelectItem value="flexible">Flexible</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <Label htmlFor="message" className="text-foreground uppercase font-bold tracking-widest text-xs">Project Details *</Label>
+                  <Textarea
+                    id="message"
+                    value={formData.message}
+                    onChange={(e) => handleInputChange('message', e.target.value)}
+                    placeholder="Tell us about your project, your pain points, or just say hi! The more details, the better we can help."
+                    rows={6}
+                    required
+                    className="bg-transparent border-2 border-border rounded-none text-foreground placeholder:text-muted-foreground/50 focus-visible:ring-0 focus-visible:border-primary transition-colors resize-none"
+                  />
+                </div>
+
+                <Button 
+                  type="submit" 
+                  size="lg" 
+                  disabled={loading}
+                  className="w-full bg-primary text-primary-foreground hover:bg-foreground hover:text-background transition-colors duration-300 text-lg px-8 py-8 rounded-none font-black tracking-widest uppercase disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {loading ? 'Executing...' : 'Submit Request'}
+                </Button>
+              </form>
+            </div>
           </div>
 
           {/* Contact Info & Quick Actions */}
-          <div className="space-y-6 sm:space-y-8">
+          <div className="space-y-8">
+            
             {/* Contact Information */}
-            <Card className="group bg-gradient-to-br from-gray-900 to-gray-800 border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
-              
-              <CardHeader>
-                <CardTitle className="text-lg sm:text-xl bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">Get In Touch</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-800/50 transition-colors">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-gray-700 to-gray-600 flex items-center justify-center flex-shrink-0">
-                    <Mail className="h-5 w-5 text-white" />
+            <div className="bg-background border-2 border-border p-8">
+              <h3 className="text-2xl font-black uppercase tracking-tight mb-8 text-foreground">Direct Access</h3>
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-secondary flex items-center justify-center border border-border flex-shrink-0">
+                    <Mail className="h-5 w-5 text-foreground" />
                   </div>
                   <div>
-                    <p className="font-medium text-white text-sm sm:text-base">Email</p>
-                    <p className="text-xs sm:text-sm text-gray-400">ctrlaltcreww@gmail.com</p>
+                    <p className="font-bold uppercase tracking-widest text-xs text-foreground mb-1">Email</p>
+                    <p className="text-muted-foreground font-light text-sm">ctrlaltcreww@gmail.com</p>
                   </div>
                 </div>
                 
-                <div className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-800/50 transition-colors">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-gray-600 to-gray-500 flex items-center justify-center flex-shrink-0">
-                    <Phone className="h-5 w-5 text-white" />
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-secondary flex items-center justify-center border border-border flex-shrink-0">
+                    <Phone className="h-5 w-5 text-foreground" />
                   </div>
                   <div>
-                    <p className="font-medium text-white text-sm sm:text-base">Phone</p>
-                    <p className="text-xs sm:text-sm text-gray-400">03349650000</p>
+                    <p className="font-bold uppercase tracking-widest text-xs text-foreground mb-1">Phone</p>
+                    <p className="text-muted-foreground font-light text-sm">03349650000</p>
                   </div>
                 </div>
                 
-                <div className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-800/50 transition-colors">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-white to-gray-400 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="h-5 w-5 text-black" />
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-secondary flex items-center justify-center border border-border flex-shrink-0">
+                    <MapPin className="h-5 w-5 text-foreground" />
                   </div>
                   <div>
-                    <p className="font-medium text-white text-sm sm:text-base">Location</p>
-                    <p className="text-xs sm:text-sm text-gray-400">Remote First, Global Reach</p>
+                    <p className="font-bold uppercase tracking-widest text-xs text-foreground mb-1">Location</p>
+                    <p className="text-muted-foreground font-light text-sm">Remote First, Global Reach</p>
                   </div>
                 </div>
                 
-                <div className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-800/50 transition-colors">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-gray-500 to-gray-600 flex items-center justify-center flex-shrink-0">
-                    <Clock className="h-5 w-5 text-white" />
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-secondary flex items-center justify-center border border-border flex-shrink-0">
+                    <Clock className="h-5 w-5 text-foreground" />
                   </div>
                   <div>
-                    <p className="font-medium text-white text-sm sm:text-base">Response Time</p>
-                    <p className="text-xs sm:text-sm text-gray-400">Usually within 24 hours</p>
+                    <p className="font-bold uppercase tracking-widest text-xs text-foreground mb-1">Ping Return</p>
+                    <p className="text-muted-foreground font-light text-sm">Usually within 24 hours</p>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
             {/* Quick Actions */}
-            <Card className="group bg-gradient-to-br from-gray-900 to-gray-800 border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
-              
-              <CardHeader>
-                <CardTitle className="text-lg sm:text-xl bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">Quick Actions</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
+            <div className="bg-secondary border-2 border-border p-8">
+              <h3 className="text-2xl font-black uppercase tracking-tight mb-8 text-foreground">Fast Paths</h3>
+              <div className="space-y-4">
                 <Button 
                   variant="outline" 
-                  className="w-full justify-start border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white hover:border-white/50 transition-all"
+                  className="w-full justify-start rounded-none border-2 border-border bg-background hover:border-primary hover:text-primary transition-colors h-14"
                   onClick={() => setOpen(true)}
                 >
-                  <MessageCircle className="h-4 w-4 mr-2" />
-                  Schedule a Call
+                  <MessageCircle className="h-5 w-5 mr-4" />
+                  <span className="font-bold uppercase tracking-widest text-xs">Schedule Call</span>
                 </Button>
                 
                 <Button 
                   variant="outline" 
-                  className="w-full justify-start border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white hover:border-white/50 transition-all"
+                  className="w-full justify-start rounded-none border-2 border-border bg-background hover:border-primary hover:text-primary transition-colors h-14"
                   onClick={handleCoffeeChat}
                 >
-                  <Coffee className="h-4 w-4 mr-2" />
-                  Virtual Coffee Chat
+                  <Coffee className="h-5 w-5 mr-4" />
+                  <span className="font-bold uppercase tracking-widest text-xs">Virtual Coffee</span>
                 </Button>
                 
                 <Button 
                   asChild
                   variant="outline" 
-                  className="w-full justify-start border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white hover:border-white/50 transition-all"
+                  className="w-full justify-start rounded-none border-2 border-border bg-background hover:border-primary hover:text-primary transition-colors h-14"
                 >
                   <a href="mailto:ctrlaltcreww@gmail.com">
-                    <Mail className="h-4 w-4 mr-2" />
-                    Send Direct Email
+                    <Mail className="h-5 w-5 mr-4" />
+                    <span className="font-bold uppercase tracking-widest text-xs">Direct Email</span>
                   </a>
                 </Button>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
-            {/* Coffee Counter */}
-            <Card className="bg-gradient-to-br from-gray-900/80 to-gray-800/80 border-gray-700 backdrop-blur-sm relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
-              <CardContent className="p-6 text-center relative z-10">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-xl bg-gradient-to-br from-white to-gray-400 flex items-center justify-center animate-pulse">
-                  <Coffee className="h-8 w-8 text-black" />
-                </div>
-                <h3 className="font-bold mb-2 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">Coffee Counter</h3>
-                <p className="text-3xl font-bold bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent mb-2">2,847</p>
-                <p className="text-xs sm:text-sm text-gray-400">
-                  Cups consumed while debugging this year
-                </p>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </div>
 
       {/* Schedule Call Modal */}
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="bg-gray-900 border-gray-700">
-          <DialogHeader>
-            <DialogTitle className="text-white">Schedule a Call</DialogTitle>
+        <DialogContent className="bg-background border-2 border-border rounded-none p-8 max-w-md">
+          <DialogHeader className="mb-6">
+            <DialogTitle className="text-2xl font-black uppercase text-foreground">Schedule Ping</DialogTitle>
           </DialogHeader>
-          <div className="space-y-4">
-            <div>
-              <Label className="text-gray-300">Your Name</Label>
+          <div className="space-y-6">
+            <div className="space-y-3">
+              <Label className="text-foreground uppercase font-bold tracking-widest text-xs">Your Name</Label>
               <Input
                 value={callForm.name}
                 onChange={(e) => setCallForm({ ...callForm, name: e.target.value })}
                 placeholder="Enter your name"
-                className="bg-gray-800 border-gray-700 text-white"
+                className="bg-transparent border-2 border-border rounded-none h-14 text-foreground focus-visible:ring-0 focus-visible:border-primary"
               />
             </div>
-            <div>
-              <Label className="text-gray-300">Preferred Time</Label>
+            <div className="space-y-3">
+              <Label className="text-foreground uppercase font-bold tracking-widest text-xs">Preferred Time</Label>
               <Input
                 type="datetime-local"
                 value={callForm.time}
                 onChange={(e) => setCallForm({ ...callForm, time: e.target.value })}
-                className="bg-gray-800 border-gray-700 text-white"
+                className="bg-transparent border-2 border-border rounded-none h-14 text-foreground focus-visible:ring-0 focus-visible:border-primary"
               />
             </div>
             <Button 
-              className="w-full bg-white text-black hover:bg-gray-200"
+              className="w-full bg-primary text-primary-foreground hover:bg-foreground hover:text-background h-14 rounded-none font-black uppercase tracking-widest transition-colors"
               onClick={handleWhatsAppCall}
             >
-              Confirm & Send via WhatsApp
+              Send via WhatsApp
             </Button>
           </div>
         </DialogContent>
       </Dialog>
 
       {/* FAQ Section */}
-      <section className="py-16 sm:py-20 bg-gray-950">
+      <section className="py-24 bg-secondary border-t-2 border-border">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">Frequently Asked Questions</h2>
-            <p className="text-lg sm:text-xl text-gray-300">
-              The questions everyone asks (and a few weird ones)
-            </p>
-          </div>
+          <h2 className="text-4xl md:text-6xl font-black mb-16 uppercase tracking-tighter text-foreground text-center">FAQ.</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700 hover:border-white/50 transition-all duration-500">
-              <h3 className="font-semibold mb-2 text-white">How long does a typical project take?</h3>
-              <p className="text-gray-400 text-sm">
-                Anywhere from "we can fix that in an hour" to "this will take 6 months of careful engineering." 
-                We'll give you a realistic timeline after understanding your needs.
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <Card className="rounded-none border-2 border-border bg-background shadow-none hover:border-primary transition-colors">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-black uppercase mb-4 text-foreground">How long does a project take?</h3>
+                <p className="text-muted-foreground font-light leading-relaxed">
+                  Anywhere from "we can fix that in an hour" to "this will take 6 months of careful engineering." 
+                  We'll give you a realistic timeline after understanding your needs.
+                </p>
+              </CardContent>
+            </Card>
             
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700 hover:border-white/50 transition-all duration-500">
-              <h3 className="font-semibold mb-2 text-white">Do you work with startups?</h3>
-              <p className="text-gray-400 text-sm">
-                Absolutely! We love working with early-stage companies. We offer flexible pricing and 
-                can even consider equity partnerships for the right projects.
-              </p>
-            </div>
+            <Card className="rounded-none border-2 border-border bg-background shadow-none hover:border-primary transition-colors">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-black uppercase mb-4 text-foreground">Do you work with startups?</h3>
+                <p className="text-muted-foreground font-light leading-relaxed">
+                  Absolutely! We love working with early-stage companies. We offer flexible pricing and 
+                  can even consider equity partnerships for the right projects.
+                </p>
+              </CardContent>
+            </Card>
             
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700 hover:border-white/50 transition-all duration-500">
-              <h3 className="font-semibold mb-2 text-white">What if we don't know what we need?</h3>
-              <p className="text-gray-400 text-sm">
-                Perfect! Half our job is helping you figure out what you actually need vs. what you think you need. 
-                We offer free consultation calls to explore your options.
-              </p>
-            </div>
+            <Card className="rounded-none border-2 border-border bg-background shadow-none hover:border-primary transition-colors">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-black uppercase mb-4 text-foreground">What if we don't know what we need?</h3>
+                <p className="text-muted-foreground font-light leading-relaxed">
+                  Perfect! Half our job is helping you figure out what you actually need vs. what you think you need. 
+                  We offer free consultation calls to explore your options.
+                </p>
+              </CardContent>
+            </Card>
             
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700 hover:border-white/50 transition-all duration-500">
-              <h3 className="font-semibold mb-2 text-white">Can you work with our existing team?</h3>
-              <p className="text-gray-400 text-sm">
-                Yes! We're great at integrating with existing teams, providing mentorship, 
-                and leaving your developers better than we found them.
-              </p>
-            </div>
+            <Card className="rounded-none border-2 border-border bg-background shadow-none hover:border-primary transition-colors">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-black uppercase mb-4 text-foreground">Can you work with our existing team?</h3>
+                <p className="text-muted-foreground font-light leading-relaxed">
+                  Yes! We're great at integrating with existing teams, providing mentorship, 
+                  and leaving your developers better than we found them.
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>

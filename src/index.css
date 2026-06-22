@@ -6,99 +6,92 @@
 
 @layer base {
   :root {
-    /* Dark tech theme - Midnight */
-    --background: 230 25% 4%;
-    --foreground: 210 40% 98%;
+    /* Light High-Contrast Minimalist Theme */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
 
-    --card: 230 20% 8%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 0%;
 
-    --popover: 230 20% 8%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
 
-    /* Electric Indigo primary */
-    --primary: 250 100% 65%;
+    /* Electric Blue primary */
+    --primary: 220 100% 50%;
     --primary-foreground: 0 0% 100%;
 
-    /* Darker secondary */
-    --secondary: 230 15% 12%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 0%;
 
-    --muted: 230 15% 15%;
-    --muted-foreground: 210 20% 70%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    /* Glowing Violet accent */
-    --accent: 280 100% 70%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 230 15% 20%;
-    --input: 230 15% 15%;
-    --ring: 250 100% 65%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 220 100% 50%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    /* Tech gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(250 100% 65%), hsl(280 100% 70%));
-    --gradient-dark: linear-gradient(135deg, hsl(230 25% 4%), hsl(230 20% 8%));
-    --gradient-glow: linear-gradient(135deg, hsl(250 100% 65% / 0.15), hsl(280 100% 70% / 0.15));
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(220 100% 50%), hsl(220 100% 60%));
+    --gradient-dark: linear-gradient(135deg, hsl(0 0% 0%), hsl(0 0% 10%));
+    --gradient-glow: linear-gradient(135deg, hsl(220 100% 50% / 0.15), hsl(220 100% 60% / 0.15));
 
-    /* Keyboard key effects */
-    --key-shadow: 0 4px 12px hsl(230 25% 0% / 0.5);
-    --key-glow: 0 0 20px hsl(250 100% 65% / 0.3);
-    --key-hover: 0 6px 20px hsl(250 100% 65% / 0.4);
+    /* Effects */
+    --key-shadow: 0 4px 12px hsl(0 0% 0% / 0.1);
+    --key-glow: 0 0 20px hsl(220 100% 50% / 0.3);
+    --key-hover: 0 6px 20px hsl(220 100% 50% / 0.4);
 
-    /* Animation variables */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Dark High-Contrast Minimalist Theme */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 3%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    /* Electric Blue primary */
+    --primary: 220 100% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 60%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 0 0% 10%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 220 100% 50%;
+
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
