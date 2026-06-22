@@ -126,7 +126,7 @@ const Services = () => {
                 
                 <CardHeader>
                   <div className="flex items-start space-x-4 mb-4">
-                    <div className={`p-3 rounded-lg bg-gradient-to-br ${service.gradient} shadow-lg group-hover:shadow-white/20 group-hover:scale-110 transition-all duration-300 flex-shrink-0`}>
+                    <div className={`p-3 rounded-lg bg-gradient-to-br ${service.gradient} shadow-lg group-hover:shadow-white/20 group-hover:-translate-y-1 transition-all duration-300 flex-shrink-0`}>
                       <service.icon className="h-7 w-7 sm:h-8 sm:w-8 text-white" />
                     </div>
                     <CardTitle className="text-lg sm:text-xl bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">
@@ -182,7 +182,7 @@ const Services = () => {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="group text-center p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10">
-              <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold rounded-xl bg-gradient-to-br from-gray-700 to-gray-600 text-white shadow-lg group-hover:shadow-white/20 group-hover:scale-110 transition-all duration-300">
+              <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold rounded-xl bg-gradient-to-br from-gray-700 to-gray-600 text-white shadow-lg group-hover:shadow-white/20 group-hover:-translate-y-1 transition-all duration-300">
                 1
               </div>
               <h3 className="text-lg font-semibold mb-2 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">Discovery</h3>
@@ -192,7 +192,7 @@ const Services = () => {
             </div>
             
             <div className="group text-center p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10">
-              <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold rounded-xl bg-gradient-to-br from-gray-600 to-gray-500 text-white shadow-lg group-hover:shadow-white/20 group-hover:scale-110 transition-all duration-300">
+              <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold rounded-xl bg-gradient-to-br from-gray-600 to-gray-500 text-white shadow-lg group-hover:shadow-white/20 group-hover:-translate-y-1 transition-all duration-300">
                 2
               </div>
               <h3 className="text-lg font-semibold mb-2 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">Planning</h3>
@@ -202,7 +202,7 @@ const Services = () => {
             </div>
             
             <div className="group text-center p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10">
-              <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold rounded-xl bg-gradient-to-br from-white to-gray-400 text-black shadow-lg group-hover:shadow-white/20 group-hover:scale-110 transition-all duration-300">
+              <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold rounded-xl bg-gradient-to-br from-white to-gray-400 text-black shadow-lg group-hover:shadow-white/20 group-hover:-translate-y-1 transition-all duration-300">
                 3
               </div>
               <h3 className="text-lg font-semibold mb-2 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">Development</h3>
@@ -212,7 +212,7 @@ const Services = () => {
             </div>
             
             <div className="group text-center p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10">
-              <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold rounded-xl bg-gradient-to-br from-gray-500 to-gray-600 text-white shadow-lg group-hover:shadow-white/20 group-hover:scale-110 transition-all duration-300">
+              <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold rounded-xl bg-gradient-to-br from-gray-500 to-gray-600 text-white shadow-lg group-hover:shadow-white/20 group-hover:-translate-y-1 transition-all duration-300">
                 4
               </div>
               <h3 className="text-lg font-semibold mb-2 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">Launch</h3>
@@ -227,8 +227,8 @@ const Services = () => {
       {/* CTA Section */}
       <section className="py-16 sm:py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gray-400 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
         </div>
         
         <div className="container mx-auto px-4 text-center relative z-10">

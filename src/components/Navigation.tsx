@@ -81,36 +81,38 @@ const Navigation = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden border-t border-white/10 bg-black/95 backdrop-blur-xl">
-            <div className="py-4 space-y-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  className={`block px-4 py-3 text-sm font-medium transition-all duration-300 rounded-lg mx-2 ${
-                    isActive(item.path) 
-                      ? 'text-white bg-white/10' 
-                      : 'text-gray-400 hover:text-white hover:bg-white/5'
-                  }`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.name}
+        <div 
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            isOpen ? 'max-h-96 border-t border-white/10 opacity-100' : 'max-h-0 opacity-0'
+          } bg-black/95 backdrop-blur-xl`}
+        >
+          <div className="py-4 space-y-1">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                to={item.path}
+                className={`block px-4 py-3 text-sm font-medium transition-all duration-300 rounded-lg mx-2 ${
+                  isActive(item.path) 
+                    ? 'text-white bg-white/10' 
+                    : 'text-gray-400 hover:text-white hover:bg-white/5'
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+            <div className="px-4 pt-2">
+              <Button 
+                asChild 
+                className="w-full bg-white text-black hover:bg-gray-200 font-semibold"
+              >
+                <Link to="/contact" onClick={() => setIsOpen(false)}>
+                  Get Started
                 </Link>
-              ))}
-              <div className="px-4 pt-2">
-                <Button 
-                  asChild 
-                  className="w-full bg-white text-black hover:bg-gray-200 font-semibold"
-                >
-                  <Link to="/contact" onClick={() => setIsOpen(false)}>
-                    Get Started
-                  </Link>
-                </Button>
-              </div>
+              </Button>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );

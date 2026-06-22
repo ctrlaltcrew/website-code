@@ -64,6 +64,8 @@ export default {
 				}
 			},
 			fontFamily: {
+				'sans': ['Inter', 'sans-serif'],
+				'heading': ['Outfit', 'sans-serif'],
 				'mono': ['JetBrains Mono', 'Consolas', 'Monaco', 'monospace'],
 			},
 			backgroundImage: {

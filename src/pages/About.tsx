@@ -43,18 +43,18 @@ const About = () => {
             {/* Timeline Layout */}
             <div className="relative">
               {/* Vertical Line */}
-              <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-white/20 to-transparent transform -translate-x-1/2"></div>
+              <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-primary/30 to-transparent transform -translate-x-1/2"></div>
               
               {/* Story Item 1 - Right */}
               <div className="relative mb-12 md:mb-16">
                 <div className="md:flex md:items-center">
                   <div className="md:w-1/2 md:pr-12"></div>
-                  <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rounded-full border-4 border-gray-900 shadow-lg shadow-white/50"></div>
+                  <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-[0_0_15px_hsl(var(--primary)_/_0.5)]"></div>
                   <div className="md:w-1/2 md:pl-12">
                     <div className="group relative">
-                      <div className="absolute -inset-1 bg-gradient-to-r from-white/20 to-gray-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
-                      <div className="relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 group-hover:border-white/50 transition-all duration-500">
-                        <div className="absolute -left-3 top-8 w-6 h-6 bg-white transform rotate-45 hidden md:block"></div>
+                      <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                      <div className="relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 group-hover:border-primary/50 transition-all duration-500">
+                        <div className="absolute -left-3 top-8 w-6 h-6 bg-gray-800 border-l border-t border-gray-700 transform -rotate-45 hidden md:block"></div>
                         <p className="text-base sm:text-lg leading-relaxed text-gray-300 group-hover:text-white transition-colors">
                           Born from a shared frustration with buggy software and a mutual love for clean code and coffee, 
                           Ctrl Alt Crew emerged as the answer to "Why can't tech be both powerful and fun?"
@@ -69,12 +69,12 @@ const About = () => {
               <div className="relative mb-12 md:mb-16">
                 <div className="md:flex md:items-center md:flex-row-reverse">
                   <div className="md:w-1/2 md:pl-12"></div>
-                  <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-br from-gray-300 to-white rounded-full border-4 border-gray-900 shadow-lg shadow-white/50"></div>
+                  <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-accent rounded-full border-4 border-background shadow-[0_0_15px_hsl(var(--accent)_/_0.5)]"></div>
                   <div className="md:w-1/2 md:pr-12">
                     <div className="group relative">
-                      <div className="absolute -inset-1 bg-gradient-to-r from-gray-500/20 to-white/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
-                      <div className="relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 group-hover:border-white/50 transition-all duration-500">
-                        <div className="absolute -right-3 top-8 w-6 h-6 bg-gradient-to-br from-gray-300 to-white transform rotate-45 hidden md:block"></div>
+                      <div className="absolute -inset-1 bg-gradient-to-r from-accent/20 to-primary/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                      <div className="relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 group-hover:border-accent/50 transition-all duration-500">
+                        <div className="absolute -right-3 top-8 w-6 h-6 bg-gray-800 border-r border-b border-gray-700 transform -rotate-45 hidden md:block"></div>
                         <p className="text-base sm:text-lg leading-relaxed text-gray-300 group-hover:text-white transition-colors">
                           We believe that the best solutions come from combining technical excellence with human creativity. 
                           Our team doesn't just write code – we craft digital experiences that make users smile and businesses thrive.
@@ -89,12 +89,12 @@ const About = () => {
               <div className="relative">
                 <div className="md:flex md:items-center">
                   <div className="md:w-1/2 md:pr-12"></div>
-                  <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rounded-full border-4 border-gray-900 shadow-lg shadow-white/50"></div>
+                  <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-[0_0_15px_hsl(var(--primary)_/_0.5)]"></div>
                   <div className="md:w-1/2 md:pl-12">
                     <div className="group relative">
-                      <div className="absolute -inset-1 bg-gradient-to-r from-white/20 to-gray-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
-                      <div className="relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 group-hover:border-white/50 transition-all duration-500">
-                        <div className="absolute -left-3 top-8 w-6 h-6 bg-white transform rotate-45 hidden md:block"></div>
+                      <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                      <div className="relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 group-hover:border-primary/50 transition-all duration-500">
+                        <div className="absolute -left-3 top-8 w-6 h-6 bg-gray-800 border-l border-t border-gray-700 transform -rotate-45 hidden md:block"></div>
                         <p className="text-base sm:text-lg leading-relaxed text-gray-300 group-hover:text-white transition-colors">
                           From AI that actually makes sense to chatbots that don't make you want to throw your laptop out the window, 
                           we're here to prove that great software can be both intelligent and intuitive.

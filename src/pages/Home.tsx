@@ -20,12 +20,12 @@ const Home = () => {
       
       {/* Hero Section */}
       <section 
-        className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900"
+        className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/30 via-background to-background"
       >
         {/* Premium 3D Scene - Hidden on very small mobile screens */}
         <div className="hidden sm:block">
           <Suspense fallback={
-            <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/30 via-background to-background" />
           }>
             <PremiumHeroScene />
           </Suspense>
@@ -82,27 +82,27 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 text-center">
-            <div className="group p-6 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 relative overflow-hidden">
+            <div className="group p-6 rounded-2xl bg-gradient-to-br from-white/[0.03] to-white/[0.01] backdrop-blur-md border border-white/10 hover:border-white/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 relative overflow-hidden">
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
-              <h3 className="text-4xl font-extrabold bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">100+</h3>
+              <h3 className="text-4xl font-extrabold bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent mb-2 group-hover:-translate-y-1 transition-transform duration-300">100+</h3>
               <p className="text-gray-400 group-hover:text-gray-200 transition-colors">Successful Projects</p>
             </div>
 
-            <div className="group p-6 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 relative overflow-hidden">
+            <div className="group p-6 rounded-2xl bg-gradient-to-br from-white/[0.03] to-white/[0.01] backdrop-blur-md border border-white/10 hover:border-white/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 relative overflow-hidden">
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
-              <h3 className="text-4xl font-extrabold bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">80+</h3>
+              <h3 className="text-4xl font-extrabold bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent mb-2 group-hover:-translate-y-1 transition-transform duration-300">80+</h3>
               <p className="text-gray-400 group-hover:text-gray-200 transition-colors">Active Clients</p>
             </div>
 
-            <div className="group p-6 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 relative overflow-hidden">
+            <div className="group p-6 rounded-2xl bg-gradient-to-br from-white/[0.03] to-white/[0.01] backdrop-blur-md border border-white/10 hover:border-white/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 relative overflow-hidden">
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
-              <h3 className="text-4xl font-extrabold bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">15+</h3>
+              <h3 className="text-4xl font-extrabold bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent mb-2 group-hover:-translate-y-1 transition-transform duration-300">15+</h3>
               <p className="text-gray-400 group-hover:text-gray-200 transition-colors">Countries Served</p>
             </div>
 
-            <div className="group p-6 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 relative overflow-hidden">
+            <div className="group p-6 rounded-2xl bg-gradient-to-br from-white/[0.03] to-white/[0.01] backdrop-blur-md border border-white/10 hover:border-white/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 relative overflow-hidden">
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
-              <h3 className="text-4xl font-extrabold bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">1+</h3>
+              <h3 className="text-4xl font-extrabold bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent mb-2 group-hover:-translate-y-1 transition-transform duration-300">1+</h3>
               <p className="text-gray-400 group-hover:text-gray-200 transition-colors">Years of Experience</p>
             </div>
           </div>
@@ -130,10 +130,10 @@ const Home = () => {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mt-8 sm:mt-10 md:mt-12">
-            <Card className="group bg-gradient-to-br from-gray-900 to-gray-800 border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 relative overflow-hidden">
+            <Card className="group bg-gradient-to-br from-white/[0.03] to-white/[0.01] backdrop-blur-md border-white/10 hover:border-white/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 relative overflow-hidden">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
               <CardContent className="p-5 sm:p-6 md:p-8 text-center">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-lg bg-gradient-to-br from-gray-700 to-gray-600 flex items-center justify-center shadow-lg group-hover:shadow-white/20 group-hover:scale-110 transition-all duration-300">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-lg bg-gradient-to-br from-gray-700 to-gray-600 flex items-center justify-center shadow-lg group-hover:shadow-white/20 group-hover:-translate-y-1 transition-all duration-300">
                   <Brain className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white" />
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 md:mb-4 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">AI & Data Science</h3>
@@ -143,10 +143,10 @@ const Home = () => {
               </CardContent>
             </Card>
             
-            <Card className="group bg-gradient-to-br from-gray-900 to-gray-800 border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 relative overflow-hidden">
+            <Card className="group bg-gradient-to-br from-white/[0.03] to-white/[0.01] backdrop-blur-md border-white/10 hover:border-white/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 relative overflow-hidden">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
               <CardContent className="p-5 sm:p-6 md:p-8 text-center">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-lg bg-gradient-to-br from-gray-600 to-gray-500 flex items-center justify-center shadow-lg group-hover:shadow-white/20 group-hover:scale-110 transition-all duration-300">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-lg bg-gradient-to-br from-gray-600 to-gray-500 flex items-center justify-center shadow-lg group-hover:shadow-white/20 group-hover:-translate-y-1 transition-all duration-300">
                   <Code className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white" />
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 md:mb-4 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">Web Development</h3>
@@ -156,10 +156,10 @@ const Home = () => {
               </CardContent>
             </Card>
             
-            <Card className="group bg-gradient-to-br from-gray-900 to-gray-800 border-gray-700 hover:border-white/50 transition-all duration-500 hover:shadow-2xl hover:shadow-white/10 sm:col-span-2 md:col-span-1 relative overflow-hidden">
+            <Card className="group bg-gradient-to-br from-white/[0.03] to-white/[0.01] backdrop-blur-md border-white/10 hover:border-white/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 sm:col-span-2 md:col-span-1 relative overflow-hidden">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gray-600 via-white to-gray-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
               <CardContent className="p-5 sm:p-6 md:p-8 text-center">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-lg bg-gradient-to-br from-white to-gray-400 flex items-center justify-center shadow-lg group-hover:shadow-white/20 group-hover:scale-110 transition-all duration-300">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-lg bg-gradient-to-br from-white to-gray-400 flex items-center justify-center shadow-lg group-hover:shadow-white/20 group-hover:-translate-y-1 transition-all duration-300">
                   <Bot className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-black" />
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 md:mb-4 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">Chatbots & Automation</h3>
@@ -173,11 +173,11 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black relative overflow-hidden">
+      <section className="py-12 sm:py-16 md:py-20 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-violet-900/30 via-background to-background relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gray-400 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
         </div>
         
         <div className="container mx-auto px-4 sm:px-6 text-center relative z-10">
