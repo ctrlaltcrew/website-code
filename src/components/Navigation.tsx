@@ -1,21 +1,20 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { ThemeToggle } from '@/components/theme-toggle';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [pressedKey, setPressedKey] = useState<string | null>(null);
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => { setIsOpen(false); }, [location.pathname]);
 
   const navItems = [
     { name: 'Home', path: '/' },
@@ -27,93 +26,120 @@ const Navigation = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
+  const handleKeyPress = (key: string) => {
+    setPressedKey(key);
+    setTimeout(() => setPressedKey(null), 150);
+  };
+
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-      scrolled 
-        ? 'bg-background/95 backdrop-blur-xl border-b border-border shadow-sm' 
-        : 'bg-transparent border-b border-transparent'
-    }`}>
-      <div className="container mx-auto px-4">
+    <nav
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+        scrolled
+          ? 'border-b border-white/5'
+          : ''
+      }`}
+      style={{
+        background: scrolled
+          ? 'rgba(10,10,12,0.92)'
+          : 'transparent',
+        backdropFilter: scrolled ? 'blur(24px)' : 'none',
+      }}
+    >
+      <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
-            <img 
-              src="/logo-grid.png" 
-              alt="Ctrl Alt Crew" 
-              className="h-10 dark:invert transition-all duration-300 group-hover:scale-105" 
-            />
+
+          {/* ── Logo: Three keycap pills ── */}
+          <Link
+            to="/"
+            className="flex items-center gap-1.5 group"
+            onClick={() => handleKeyPress('logo')}
+          >
+            <div
+              className={`keycap keycap-logo ${pressedKey === 'logo' ? 'pressed' : ''}`}
+              style={{ letterSpacing: '0.05em' }}
+            >
+              Ctrl
+            </div>
+            <div
+              className={`keycap keycap-logo ${pressedKey === 'logo' ? 'pressed' : ''}`}
+              style={{ letterSpacing: '0.05em', transitionDelay: '0.02s' }}
+            >
+              Alt
+            </div>
+            <div
+              className={`keycap keycap-logo keycap-white ${pressedKey === 'logo' ? 'pressed' : ''}`}
+              style={{ letterSpacing: '0.05em', transitionDelay: '0.04s' }}
+            >
+              Crew
+            </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          {/* ── Desktop Nav ── */}
+          <div className="hidden md:flex items-center gap-2">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
-                className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg ${
-                  isActive(item.path) 
-                    ? 'text-foreground bg-accent' 
-                    : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
+                onClick={() => handleKeyPress(item.name)}
+                className={`keycap keycap-xs ${isActive(item.path) ? 'active-key' : ''} ${
+                  pressedKey === item.name ? 'pressed' : ''
                 }`}
               >
                 {item.name}
               </Link>
             ))}
-            <div className="ml-4 flex items-center space-x-2">
-              <ThemeToggle />
-              <Button 
-                asChild 
-                className="font-semibold shadow-lg hover:shadow-xl transition-all"
+
+            <div className="ml-3">
+              <Link
+                to="/contact"
+                onClick={() => handleKeyPress('cta')}
+                className={`keycap keycap-sm keycap-white ${pressedKey === 'cta' ? 'pressed' : ''}`}
               >
-                <Link to="/contact">Get Started</Link>
-              </Button>
+                Get Started
+              </Link>
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-2">
-            <ThemeToggle />
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-foreground"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
-          </div>
+          {/* ── Mobile ── */}
+          <button
+            className="md:hidden keycap keycap-xs"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          </button>
         </div>
 
-        {/* Mobile Navigation */}
-        <div 
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-            isOpen ? 'max-h-96 border-t border-border opacity-100' : 'max-h-0 opacity-0'
-          } bg-background/95 backdrop-blur-xl`}
+        {/* ── Mobile Nav ── */}
+        <div
+          className={`md:hidden overflow-hidden transition-all duration-400 ease-in-out ${
+            isOpen ? 'max-h-screen opacity-100 pb-6' : 'max-h-0 opacity-0'
+          }`}
         >
-          <div className="py-4 space-y-1">
+          <div
+            className="mt-2 p-4 rounded-2xl border border-white/6 space-y-2"
+            style={{ background: 'rgba(12,12,14,0.98)', backdropFilter: 'blur(20px)' }}
+          >
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
-                className={`block px-4 py-3 text-sm font-medium transition-all duration-300 rounded-lg mx-2 ${
-                  isActive(item.path) 
-                    ? 'text-foreground bg-accent' 
-                    : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
-                }`}
                 onClick={() => setIsOpen(false)}
+                className={`keycap keycap-sm w-full justify-start ${isActive(item.path) ? 'keycap-white' : ''}`}
+                style={{ display: 'flex' }}
               >
                 {item.name}
               </Link>
             ))}
-            <div className="px-4 pt-2">
-              <Button 
-                asChild 
-                className="w-full font-semibold"
+            <div className="pt-2">
+              <Link
+                to="/contact"
+                onClick={() => setIsOpen(false)}
+                className="keycap keycap-sm keycap-white w-full justify-center"
+                style={{ display: 'flex' }}
               >
-                <Link to="/contact" onClick={() => setIsOpen(false)}>
-                  Get Started
-                </Link>
-              </Button>
+                Get Started
+              </Link>
             </div>
           </div>
         </div>

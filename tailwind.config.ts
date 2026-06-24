@@ -61,12 +61,20 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				'key': {
+					face: '#1e1e22',
+					rim: '#111114',
+					white: '#f0f0f2',
+				},
+				'silver': '#c9c9ce',
+				'charcoal': '#8a8a8e',
 			},
 			fontFamily: {
-				'sans': ['Inter', 'sans-serif'],
-				'heading': ['Outfit', 'sans-serif'],
-				'mono': ['JetBrains Mono', 'Consolas', 'Monaco', 'monospace'],
+				'sans': ['Space Grotesk', 'system-ui', 'sans-serif'],
+				'heading': ['Space Grotesk', 'system-ui', 'sans-serif'],
+				'mono': ['Space Mono', 'monospace'],
+				'mono-space': ['Space Mono', 'monospace'],
 			},
 			backgroundImage: {
 				'gradient-primary': 'var(--gradient-primary)',

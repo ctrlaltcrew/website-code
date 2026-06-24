@@ -1,163 +1,367 @@
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Github, Brain, Bot, Smartphone, ArrowRight } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import { Github, Brain, Bot, Smartphone, ArrowRight, Star, ExternalLink } from 'lucide-react';
 
-const Portfolio = () => {
-  const projects = [
-    {
-      title: "SmartChat AI",
-      description: "RAG-powered chatbot that actually understands context (shocking, we know)",
-      category: "AI & Chatbots",
-      icon: Bot,
-      github: "https://github.com/ctrlaltcrew/SmartChat-AI-Assistant",
-      technologies: ["Python", "LangChain", "OpenAI", "Vector DB"],
-      features: [
-        "Multi-document knowledge base",
-        "Real-time learning capabilities", 
-        "Multi-language support"
-      ],
-    },
-    {
-      title: "PredictaFlow",
-      description: "ML pipeline that predicts user behavior better than a fortune teller",
-      category: "Data Science",
-      icon: Brain,
-      github: "https://github.com/ctrlaltcrew/PredictaFlow-Analytics",
-      technologies: ["TensorFlow", "Airflow", "PostgreSQL", "Docker"],
-      features: [
-        "Real-time data processing",
-        "Automated model retraining",
-        "A/B testing integration"
-      ],
-    },
-    {
-      title: "EcoTrack Mobile",
-      description: "Carbon footprint tracker that makes saving the planet addictive",
-      category: "Mobile App",
-      icon: Smartphone,
-      github: "https://github.com/ctrlaltcrew/EcoTrack-Mobile-App",
-      technologies: ["React Native", "Node.js", "Firebase", "Chart.js"],
-      features: [
-        "Gamified tracking system",
-        "Social challenges",
-        "AI recommendations"
-      ],
-    },
-    {
-      title: "AutoCode Gen",
-      description: "AI that writes code while you drink coffee (the dream is real)",
-      category: "Automation",
-      icon: Bot,
-      github: "https://github.com/ctrlaltcrew/SmartChat-AI-Assistant",
-      technologies: ["GPT-4", "AST Parsing", "Git", "VS Code Extension"],
-      features: [
-        "Natural language to code",
-        "Auto-documentation",
-        "Code review suggestions"
-      ],
-    }
-  ];
+const projects = [
+  {
+    title: 'SmartChat AI',
+    tagline: 'RAG-powered enterprise assistant',
+    desc: 'Multi-document knowledge base chatbot with real-time learning and context-aware conversations that drive outcomes.',
+    category: 'AI & Chatbots',
+    icon: Bot,
+    github: 'https://github.com/ctrlaltcrew/SmartChat-AI-Assistant',
+    tech: ['Python', 'LangChain', 'OpenAI', 'Vector DB', 'FastAPI'],
+    features: ['Multi-document knowledge base', 'Real-time learning', 'Multi-language support'],
+  },
+  {
+    title: 'PredictaFlow',
+    tagline: 'End-to-end ML pipeline platform',
+    desc: 'Scalable ML pipeline predicting user behavior with 94% accuracy. Automated retraining and A/B testing built-in.',
+    category: 'Data Science',
+    icon: Brain,
+    github: 'https://github.com/ctrlaltcrew/PredictaFlow-Analytics',
+    tech: ['TensorFlow', 'Airflow', 'PostgreSQL', 'Docker', 'AWS'],
+    features: ['Real-time data processing', 'Automated retraining', 'A/B testing integration'],
+  },
+  {
+    title: 'EcoTrack Mobile',
+    tagline: 'Gamified sustainability platform',
+    desc: '50k+ active users tracking carbon footprints through gamification, social challenges, and AI-powered recommendations.',
+    category: 'Mobile App',
+    icon: Smartphone,
+    github: 'https://github.com/ctrlaltcrew/EcoTrack-Mobile-App',
+    tech: ['React Native', 'Node.js', 'Firebase', 'Redux', 'Chart.js'],
+    features: ['Gamified tracking', 'Social challenges', 'AI recommendations'],
+  },
+  {
+    title: 'AutoCode Gen',
+    tagline: 'AI-powered dev assistant',
+    desc: 'Natural language to production code. Auto-documentation, intelligent review suggestions, VS Code integration.',
+    category: 'Automation',
+    icon: Bot,
+    github: 'https://github.com/ctrlaltcrew/SmartChat-AI-Assistant',
+    tech: ['GPT-4', 'AST Parsing', 'TypeScript', 'VS Code API', 'Git'],
+    features: ['Natural language to code', 'Auto-documentation', 'AI code review'],
+  },
+];
 
-  const testimonials = [
-    {
-      name: "Sarah Chen",
-      role: "CTO, TechFlow",
-      quote: "Ctrl Alt Crew didn't just build our AI system, they made it so intuitive that our team actually enjoys using it. That's witchcraft.",
-      project: "SmartChat AI"
-    },
-    {
-      name: "Marcus Rodriguez", 
-      role: "Founder, GreenTech",
-      quote: "They turned our 'crazy idea' into a mobile app with 50k users. I'm pretty sure they're actual wizards.",
-      project: "EcoTrack"
-    },
-    {
-      name: "Dr. Emily Watson",
-      role: "Head of Data, FinFlow",
-      quote: "Finally, a team that speaks both human and machine. Our ML pipeline has been flawless for 8 months straight.",
-      project: "PredictaFlow"
-    }
-  ];
+const testimonials = [
+  {
+    name: 'Sarah Chen',
+    role: 'CTO · TechFlow Inc.',
+    quote: "Ctrl Alt Crew built our AI system so well our team actually enjoys using it. That's genuine engineering magic.",
+    project: 'SmartChat AI',
+    avatar: 'SC',
+  },
+  {
+    name: 'Marcus Rodriguez',
+    role: 'Founder · GreenTech',
+    quote: 'They took our crazy idea and shipped a mobile app with 50k users in 6 months. Unmatched execution speed.',
+    project: 'EcoTrack',
+    avatar: 'MR',
+  },
+  {
+    name: 'Dr. Emily Watson',
+    role: 'Head of Data · FinFlow',
+    quote: 'Our ML pipeline has been flawless for 8 months straight. The ROI pays for itself many times over.',
+    project: 'PredictaFlow',
+    avatar: 'EW',
+  },
+];
+
+/* ── 3D Tilt project card ── */
+const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: number }) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+    const r = ref.current.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    ref.current.style.transform = `perspective(1000px) rotateY(${x * 10}deg) rotateX(${-y * 8}deg) translateZ(6px)`;
+  };
+
+  const handleLeave = () => {
+    if (!ref.current) return;
+    ref.current.style.transform = '';
+  };
 
   return (
-    <div className="min-h-screen bg-background font-sans">
+    <div
+      ref={ref}
+      onMouseMove={handleMove}
+      onMouseLeave={handleLeave}
+      className="card-mono rounded-2xl overflow-hidden"
+      style={{
+        transition: 'transform 0.12s ease-out',
+        willChange: 'transform',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      {/* Preview area */}
+      <div
+        style={{
+          height: '200px',
+          position: 'relative',
+          overflow: 'hidden',
+          background: 'linear-gradient(135deg, #141418 0%, #0e0e12 100%)',
+        }}
+      >
+        <div className="bg-dots-dark absolute inset-0 opacity-80" />
+
+        {/* Center icon in a keycap-style box */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <div
+            className="keycap"
+            style={{
+              width: 80,
+              height: 80,
+              borderRadius: 18,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              '--key-depth': '5px',
+              pointerEvents: 'none',
+            } as React.CSSProperties}
+          >
+            <project.icon size={32} style={{ color: '#c9c9ce' }} />
+          </div>
+        </div>
+
+        {/* Category badge */}
+        <div style={{ position: 'absolute', top: 16, left: 16 }}>
+          <span className="tag-mono">{project.category}</span>
+        </div>
+
+        {/* Index */}
+        <div
+          style={{
+            position: 'absolute',
+            top: 12,
+            right: 16,
+            fontFamily: "'Space Mono', monospace",
+            fontSize: '2.5rem',
+            fontWeight: 700,
+            color: 'rgba(255,255,255,0.04)',
+            lineHeight: 1,
+          }}
+        >
+          0{index + 1}
+        </div>
+
+        {/* Shimmer on hover */}
+        <div
+          className="shimmer absolute inset-0"
+          style={{ opacity: 0, transition: 'opacity 0.3s', background: 'transparent' }}
+        />
+      </div>
+
+      {/* Content */}
+      <div style={{ padding: '28px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+        <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#f5f5f7', marginBottom: 4 }}>
+          {project.title}
+        </h3>
+        <p
+          style={{
+            fontSize: '0.7rem',
+            fontFamily: "'Space Mono', monospace",
+            color: '#8a8a8e',
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+            marginBottom: 14,
+          }}
+        >
+          {project.tagline}
+        </p>
+        <p style={{ fontSize: '0.85rem', color: '#8a8a8e', lineHeight: 1.75, marginBottom: 16, flex: 1 }}>
+          {project.desc}
+        </p>
+
+        {/* Features */}
+        <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 16px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+          {project.features.map((f, i) => (
+            <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.8rem', color: '#c9c9ce' }}>
+              <span
+                style={{
+                  width: 5,
+                  height: 5,
+                  borderRadius: '50%',
+                  background: '#c9c9ce',
+                  flexShrink: 0,
+                }}
+              />
+              {f}
+            </li>
+          ))}
+        </ul>
+
+        {/* Tech */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, marginBottom: 20 }}>
+          {project.tech.map((t, i) => (
+            <span key={i} className="tag-mono">{t}</span>
+          ))}
+        </div>
+
+        {/* Actions */}
+        <div
+          style={{
+            display: 'flex',
+            gap: 10,
+            paddingTop: 16,
+            borderTop: '1px solid rgba(255,255,255,0.06)',
+          }}
+        >
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="keycap keycap-sm keycap-white"
+            style={{ flex: 1, justifyContent: 'center', display: 'flex', alignItems: 'center', gap: 6 }}
+          >
+            <Github size={14} />
+            Source
+          </a>
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="keycap keycap-sm"
+            style={{ display: 'flex', alignItems: 'center', gap: 6 }}
+          >
+            <ExternalLink size={13} />
+            Live
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Portfolio = () => {
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('booted'); }),
+      { threshold: 0.07 }
+    );
+    document.querySelectorAll('.boot-in').forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div style={{ background: '#0a0a0c', color: '#f5f5f7', minHeight: '100vh', overflowX: 'hidden' }}>
+      <div className="grain" />
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-background border-b-2 border-border">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-        
-        <div className="container mx-auto px-4 text-center relative z-10 py-16">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 uppercase tracking-tighter text-foreground">
-            Our <span className="text-primary">Work.</span>
+      {/* ── Hero ── */}
+      <section style={{ paddingTop: 160, paddingBottom: 80 }} className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-dark pointer-events-none opacity-60" />
+        <div
+          className="glow-blob"
+          style={{ top: '-80px', right: '20%', width: 350, height: 350, background: 'rgba(255,255,255,0.016)', filter: 'blur(80px)', position: 'absolute' }}
+        />
+        <div className="container mx-auto px-6 text-center relative">
+          <div className="status-pill inline-flex mb-8">
+            <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#f5f5f7', boxShadow: '0 0 6px rgba(255,255,255,0.8)' }} />
+            Real Projects · Real Results
+          </div>
+          <h1 style={{ fontSize: 'clamp(3.5rem, 10vw, 8rem)', letterSpacing: '-0.04em', lineHeight: 1, marginBottom: 24 }}>
+            Our Work.
           </h1>
-          <p className="text-lg md:text-2xl text-muted-foreground max-w-3xl mx-auto font-light tracking-wide">
-            Real projects, real results, real satisfied clients (and yes, they actually paid us).
+          <p style={{ fontSize: '1.1rem', color: '#8a8a8e', maxWidth: 480, margin: '0 auto', lineHeight: 1.75 }}>
+            Handcrafted software that ships, scales, and delivers measurable business impact.
           </p>
         </div>
       </section>
 
-      {/* Projects Grid */}
-      <section className="py-24 bg-background border-b-2 border-border">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
-              <div key={index} className="flex flex-col bg-background border-2 border-border hover:border-primary transition-colors duration-300 group">
-                <div className="aspect-video bg-secondary flex items-center justify-center border-b-2 border-border group-hover:bg-primary/5 transition-colors">
-                  <project.icon className="h-24 w-24 text-muted-foreground group-hover:text-primary transition-colors duration-500 group-hover:scale-110" />
+      {/* ── Projects Grid ── */}
+      <section style={{ padding: '60px 0 100px' }}>
+        <div className="container mx-auto px-6">
+          <div className="divider-mono mb-14" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {projects.map((project, i) => (
+              <div
+                key={i}
+                className="boot-in h-full"
+                style={{ transitionDelay: `${i * 0.08}s` }}
+              >
+                <ProjectCard project={project} index={i} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Testimonials ── */}
+      <section style={{ padding: '80px 0' }} className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-dots-dark pointer-events-none opacity-40" />
+        <div className="container mx-auto px-6 relative">
+          <div className="boot-in text-center mb-16">
+            <p className="mono mb-4" style={{ color: '#8a8a8e', fontSize: '0.75rem', letterSpacing: '0.12em' }}>CLIENT VOICES</p>
+            <h2 style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)', letterSpacing: '-0.04em' }}>Feedback.</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {testimonials.map((t, i) => (
+              <div
+                key={i}
+                className="boot-in card-mono rounded-2xl p-8"
+                style={{ transitionDelay: `${i * 0.08}s`, display: 'flex', flexDirection: 'column' }}
+              >
+                {/* Stars */}
+                <div style={{ display: 'flex', gap: 4, marginBottom: 20 }}>
+                  {[...Array(5)].map((_, si) => (
+                    <Star key={si} size={14} style={{ fill: '#f5f5f7', color: '#f5f5f7' }} />
+                  ))}
                 </div>
 
-                <div className="p-8 flex flex-col flex-grow">
-                  <div className="flex justify-between items-start mb-4">
-                    <Badge variant="outline" className="rounded-none border-border bg-secondary text-foreground uppercase tracking-widest text-xs font-bold">
-                      {project.category}
-                    </Badge>
-                    <span className="text-4xl font-black text-border opacity-50 group-hover:text-primary group-hover:opacity-20 transition-colors">
-                      0{index + 1}
-                    </span>
+                <blockquote style={{ fontSize: '0.88rem', color: '#c9c9ce', lineHeight: 1.8, fontStyle: 'italic', flex: 1, marginBottom: 24 }}>
+                  "{t.quote}"
+                </blockquote>
+
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 12,
+                    paddingTop: 16,
+                    borderTop: '1px solid rgba(255,255,255,0.06)',
+                  }}
+                >
+                  <div
+                    style={{
+                      width: 38,
+                      height: 38,
+                      borderRadius: '50%',
+                      background: 'linear-gradient(135deg, #2a2a2e, #1a1a1e)',
+                      border: '1px solid rgba(255,255,255,0.1)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontFamily: "'Space Mono', monospace",
+                      fontSize: '0.7rem',
+                      fontWeight: 700,
+                      color: '#c9c9ce',
+                      flexShrink: 0,
+                    }}
+                  >
+                    {t.avatar}
                   </div>
-                  
-                  <h3 className="text-3xl font-black uppercase mb-4 text-foreground tracking-tight">{project.title}</h3>
-                  <p className="text-muted-foreground font-light mb-8">
-                    {project.description}
-                  </p>
-
-                  <div className="mt-auto space-y-6">
-                    <div>
-                      <h4 className="font-bold text-sm mb-3 text-foreground uppercase tracking-wider">Features:</h4>
-                      <ul className="space-y-2">
-                        {project.features.map((feature, i) => (
-                          <li key={i} className="text-sm text-muted-foreground flex items-center group-hover:text-foreground transition-colors">
-                            <ArrowRight className="h-4 w-4 mr-2 text-primary mt-0.5 flex-shrink-0" />
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h4 className="font-bold text-sm mb-3 text-foreground uppercase tracking-wider">Tech Stack:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {project.technologies.map((tech, i) => (
-                          <Badge key={i} variant="outline" className="rounded-none border-border bg-transparent hover:border-primary text-muted-foreground hover:text-foreground transition-colors">
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="pt-4 border-t border-border">
-                      <Button asChild className="rounded-none font-bold uppercase tracking-widest w-full group-hover:bg-primary transition-colors">
-                        <a href={project.github} target="_blank" rel="noopener noreferrer">
-                          <Github className="h-4 w-4 mr-2" /> View Source Code
-                        </a>
-                      </Button>
-                    </div>
+                  <div>
+                    <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#f5f5f7' }}>{t.name}</div>
+                    <div style={{ fontSize: '0.72rem', color: '#8a8a8e', fontFamily: "'Space Mono', monospace" }}>{t.role}</div>
                   </div>
+                  <span className="tag-mono" style={{ marginLeft: 'auto' }}>{t.project}</span>
                 </div>
               </div>
             ))}
@@ -165,75 +369,45 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-24 bg-secondary border-b-2 border-border">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 border-b-2 border-border pb-8">
-            <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase text-foreground">Feedback.</h2>
-            <p className="text-lg text-muted-foreground font-light mt-4 md:mt-0 max-w-md text-right">
-              Real feedback from humans who actually use our products.
+      {/* ── Tech Arsenal ── */}
+      <section style={{ padding: '60px 0 100px' }}>
+        <div className="container mx-auto px-6">
+          <div className="boot-in text-center mb-12">
+            <p className="mono mb-4" style={{ color: '#8a8a8e', fontSize: '0.75rem', letterSpacing: '0.12em' }}>POWERED BY</p>
+            <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', letterSpacing: '-0.04em' }}>Our Arsenal.</h2>
+          </div>
+          <div className="boot-in grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+            {['Python', 'React', 'Node.js', 'TypeScript', 'TensorFlow', 'Docker', 'AWS', 'PostgreSQL', 'MongoDB', 'Redis', 'Kubernetes', 'OpenAI'].map((t, i) => (
+              <div key={i} className="keycap keycap-sm justify-center" style={{ display: 'flex', fontSize: '0.7rem' }}>{t}</div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section style={{ padding: '60px 0 120px' }}>
+        <div className="divider-mono mb-16" />
+        <div className="container mx-auto px-6 text-center">
+          <div className="boot-in max-w-2xl mx-auto">
+            <h2 style={{ fontSize: 'clamp(2.5rem, 7vw, 5rem)', letterSpacing: '-0.04em', marginBottom: '1.5rem' }}>
+              Ready to Build?
+            </h2>
+            <p style={{ color: '#8a8a8e', fontSize: '1.1rem', marginBottom: '2.5rem' }}>
+              Let's create something remarkable together.
             </p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, justifyContent: 'center' }}>
+              <Link to="/contact" className="keycap keycap-lg keycap-white">
+                Start Your Project
+              </Link>
+              <Link
+                to="/services"
+                className="keycap keycap-lg"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}
+              >
+                View Services <ArrowRight size={15} />
+              </Link>
+            </div>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="rounded-none border-2 border-border bg-background hover:border-primary transition-colors duration-300 group shadow-none">
-                <CardContent className="p-8 flex flex-col h-full">
-                  <div className="text-6xl font-serif text-primary opacity-50 mb-4 leading-none">"</div>
-                  <p className="text-foreground font-medium italic mb-8 flex-grow">
-                    {testimonial.quote}
-                  </p>
-                  <div className="border-t border-border pt-4">
-                    <p className="font-black text-foreground uppercase tracking-tight">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground uppercase tracking-widest mb-2">{testimonial.role}</p>
-                    <Badge variant="outline" className="rounded-none text-xs text-primary border-primary bg-primary/5">
-                      {testimonial.project}
-                    </Badge>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Tech Stack */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-6xl font-black mb-8 uppercase tracking-tighter text-foreground">Our Arsenal.</h2>
-          <p className="text-lg md:text-xl text-muted-foreground mb-16 font-light max-w-2xl mx-auto">
-            The industrial-grade tools we use to turn caffeine into scalable code.
-          </p>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {[
-              "Python", "React", "Node.js", "TypeScript", "TensorFlow", "Docker",
-              "AWS", "PostgreSQL", "MongoDB", "Redis", "Kubernetes", "OpenAI"
-            ].map((tech, index) => (
-              <div key={index} className="p-6 border-2 border-border bg-secondary hover:border-primary hover:bg-background hover:text-primary transition-all duration-300 flex items-center justify-center font-black uppercase tracking-wider text-sm text-foreground">
-                {tech}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-32 bg-foreground text-background">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black mb-8 uppercase tracking-tighter">
-            Ready to Build?
-          </h2>
-          <p className="text-lg sm:text-xl md:text-2xl mb-12 max-w-2xl mx-auto font-light opacity-80">
-            Let's create something amazing together.
-          </p>
-          <Button 
-            asChild 
-            size="lg" 
-            className="bg-primary text-primary-foreground hover:bg-background hover:text-foreground text-lg px-12 py-8 rounded-none font-black tracking-widest uppercase transition-colors"
-          >
-            <Link to="/contact">Start Your Project</Link>
-          </Button>
         </div>
       </section>
 
